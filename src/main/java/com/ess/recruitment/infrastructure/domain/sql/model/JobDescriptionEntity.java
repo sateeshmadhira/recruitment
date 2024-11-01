@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 public class JobDescriptionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "JOB_DES_ID")
     private Long id;
 
     @Enumerated(EnumType.STRING)
     private Industry jobDomain;
 
-    @Column(name = "JOB_DESCRIPTION")
+    @Column(name = "JOB_DESC")
     private String jobDescription;
 
     @Column(name = "RECRUITER_INSTRUCTIONS")

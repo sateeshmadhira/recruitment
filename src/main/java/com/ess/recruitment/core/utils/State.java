@@ -1,8 +1,5 @@
 package com.ess.recruitment.core.utils;
 
 public enum State {
-    TELANGANA,
-    JHARKHAND,
-    TEXAS,
-    FLORIDA
+    NY,AP,TS,NJ,SYDNEY,PERTH,LONDON,MANCHESTER
 }
