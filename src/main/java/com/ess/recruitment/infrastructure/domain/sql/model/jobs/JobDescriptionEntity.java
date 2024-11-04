@@ -1,4 +1,4 @@
-package com.ess.recruitment.infrastructure.domain.sql.model;
+package com.ess.recruitment.infrastructure.domain.sql.model.jobs;
 
 import com.ess.recruitment.core.utils.Industry;
 import jakarta.persistence.*;

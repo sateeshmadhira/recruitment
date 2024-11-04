@@ -21,5 +21,4 @@ public class PayAndBillingDetailsDTO implements Serializable {
     private boolean markAsPreferred;
     private Long templateId;
     private Long jobId;
-
 }

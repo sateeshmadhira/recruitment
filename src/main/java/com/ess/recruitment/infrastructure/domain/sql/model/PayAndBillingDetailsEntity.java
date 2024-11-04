@@ -2,6 +2,8 @@ package com.ess.recruitment.infrastructure.domain.sql.model;
 
 import com.ess.recruitment.core.utils.JobType;
 import com.ess.recruitment.core.utils.PayType;
+import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
+import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

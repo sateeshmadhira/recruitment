@@ -1,4 +1,4 @@
-package com.ess.recruitment.core.dto;
+package com.ess.recruitment.core.dto.jobs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RecruitmentTeamDTO {
-
+    private Long id;
     private List<String>  recruiters;
     private List<String>  additionalRecruiters;
     private List<String> recruitmentManager;
@@ -18,6 +18,4 @@ public class RecruitmentTeamDTO {
     private int maxSubmissions;
     private List<String> accountManager;
     private Long jobId;
-
-
 }

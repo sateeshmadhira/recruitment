@@ -1,16 +1,39 @@
 package com.ess.recruitment.core.resp;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ApiResponse {
-    private  String message;
-    private  int code;
-    private  String  status;
-    private TemplatePageResponse templatePageResponse;
 
+    private boolean success;
+    private String message;
+    private Object data;
+    private PaginationResponse paginationResponse;
+    private long count;
+
+    public ApiResponse(boolean success, String message, long count, Object data) {
+        this.success = success;
+        this.message = message;
+        this.count = count;
+        this.data = data;
+    }
+
+    public ApiResponse(boolean success, String message, Object data, PaginationResponse paginationResponse, long count) {
+        this.success = success;
+        this.message = message;
+        this.data = data;
+        this.paginationResponse = paginationResponse;
+        this.count = count;
+    }
+
+    public ApiResponse() {
+    }
+
+    public ApiResponse(boolean success, String message, Object data, PaginationResponse paginationResponse) {
+        this.success = success;
+        this.message = message;
+        this.data = data;
+        this.paginationResponse = paginationResponse;
+    }
 }
+
