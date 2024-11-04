@@ -19,5 +19,4 @@ public class PayAndBillingDetailsDTO {
     private boolean markAsPreferred;
     private Long templateId;
     private Long jobId;
-
 }

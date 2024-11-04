@@ -1,6 +1,6 @@
 package com.ess.recruitment.infrastructure.controller;
 
-import com.ess.recruitment.core.dto.TemplateDTO;
+import com.ess.recruitment.core.dto.template.TemplateDTO;
 import com.ess.recruitment.infrastructure.domain.sql.service.impl.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

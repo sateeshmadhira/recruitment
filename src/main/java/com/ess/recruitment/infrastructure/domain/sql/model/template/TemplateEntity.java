@@ -1,10 +1,10 @@
-package com.ess.recruitment.infrastructure.domain.sql.model;
+package com.ess.recruitment.infrastructure.domain.sql.model.template;
 
-import com.ess.recruitment.core.dto.PayAndBillingDetailsDTO;
 import com.ess.recruitment.core.utils.Country;
 import com.ess.recruitment.core.utils.Qualifications;
 import com.ess.recruitment.core.utils.RemoteStatus;
 import com.ess.recruitment.core.utils.State;
+import com.ess.recruitment.infrastructure.domain.sql.model.PayAndBillingDetailsEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

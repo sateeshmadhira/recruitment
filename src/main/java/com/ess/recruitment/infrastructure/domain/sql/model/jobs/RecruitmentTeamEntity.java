@@ -1,4 +1,4 @@
-package com.ess.recruitment.infrastructure.domain.sql.model;
+package com.ess.recruitment.infrastructure.domain.sql.model.jobs;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

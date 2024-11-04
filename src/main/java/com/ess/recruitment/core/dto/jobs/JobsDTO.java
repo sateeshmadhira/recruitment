@@ -1,5 +1,6 @@
-package com.ess.recruitment.core.dto;
+package com.ess.recruitment.core.dto.jobs;
 
+import com.ess.recruitment.core.dto.PayAndBillingDetailsDTO;
 import com.ess.recruitment.core.utils.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class JobsDTO {
     private Long jobId;
+    private String jobCode;
     private Status status;
     private String jobTitle;
     private JobType jobType;
