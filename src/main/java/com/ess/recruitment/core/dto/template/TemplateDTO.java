@@ -3,7 +3,7 @@ package com.ess.recruitment.core.dto.template;
 import com.ess.recruitment.core.dto.PayAndBillingDetailsDTO;
 import com.ess.recruitment.core.utils.Country;
 import com.ess.recruitment.core.utils.Qualifications;
-import com.ess.recruitment.core.utils.RemoteStatus;
+import com.ess.recruitment.core.utils.WorkType;
 import com.ess.recruitment.core.utils.State;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +23,7 @@ public class TemplateDTO {
     private State state;
     private int workExperience;
     private int noOfPosition;
-    private RemoteStatus remoteStatus;
+    private WorkType remoteStatus;
     private String languagesRequired;
     private String jobDescription;
     private String approvalFlow;

@@ -1,9 +1,7 @@
-package com.ess.recruitment.infrastructure.domain.sql.model;
+package com.ess.recruitment.infrastructure.domain.sql.model.template;
 
-import com.ess.recruitment.core.utils.JobType;
+import com.ess.recruitment.core.utils.EmploymentType;
 import com.ess.recruitment.core.utils.PayType;
-import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
-import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,7 +19,7 @@ public class PayAndBillingDetailsEntity {
     private Long payId;
 
     @Enumerated(EnumType.STRING)
-    private JobType jobType;
+    private EmploymentType jobType;
 
     @Enumerated(EnumType.STRING)
     private PayType payType;
@@ -41,8 +39,5 @@ public class PayAndBillingDetailsEntity {
     @OneToOne
     @JoinColumn(name = "TEMPLATE_ID")
     private TemplateEntity templateEntity;
-
-    @OneToOne
-    @JoinColumn(name = "JOB_ID")
-    private JobsEntity jobsEntity;
+    
 }

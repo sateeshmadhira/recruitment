@@ -1,5 +1,5 @@
 package com.ess.recruitment.core.utils;
 
-public enum JobType {
+public enum EmploymentType {
     CONTRACT,PERMANENT,TEMPORARY
 }

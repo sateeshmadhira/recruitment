@@ -1,5 +1,5 @@
 package com.ess.recruitment.core.utils;
 
-public enum RemoteStatus {
+public enum WorkType {
     ONSITE,REMOTE,HYBRID
 }
