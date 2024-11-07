@@ -24,23 +24,11 @@ public class MapperImpl implements MapperConfig {
     @Override
     public TemplateDTO toDtoTemplate(TemplateEntity templateEntity) {
         TemplateDTO templateDTO=modelMapper.map(templateEntity,TemplateDTO.class);
-        if(templateEntity.getPayAndBillingDetailsEntity()!=null){
-            PayAndBillingDetailsDTO payAndBillingDetailsDTO=
-                    modelMapper.map(templateEntity.getPayAndBillingDetailsEntity(),PayAndBillingDetailsDTO.class);
-            payAndBillingDetailsDTO.setTemplateId(templateDTO.getTemplateId());
-            templateDTO.setPayAndBillingDetailsDTO(payAndBillingDetailsDTO);
-        }
         return templateDTO;
     }
     @Override
     public TemplateEntity toEntityTemplate(TemplateDTO templateDTO) {
         TemplateEntity templateEntity=modelMapper.map(templateDTO,TemplateEntity.class);
-        if(templateDTO.getPayAndBillingDetailsDTO()!=null){
-            PayAndBillingDetailsEntity payAndBillingDetailsEntity=
-                    modelMapper.map(templateDTO.getPayAndBillingDetailsDTO(), PayAndBillingDetailsEntity.class);
-            payAndBillingDetailsEntity.setTemplateEntity(templateEntity);
-            templateEntity.setPayAndBillingDetailsEntity(payAndBillingDetailsEntity);
-        }
         return templateEntity;
     }
 

@@ -24,7 +24,7 @@ public class JobsDTO {
     private int workExperience;
     private int noOfPositions;
     private Date targetDate;
-    private RemoteStatus remoteStatus;
+    private WorkType remoteStatus;
     private String languagesRequired;
     private Qualifications qualifications;
     private Industry industry;

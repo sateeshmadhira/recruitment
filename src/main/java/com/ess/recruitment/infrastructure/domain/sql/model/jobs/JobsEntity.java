@@ -56,7 +56,7 @@ public class JobsEntity {
     private Date targetDate;
 
     @Enumerated(EnumType.STRING)
-    private RemoteStatus remoteStatus;
+    private WorkType remoteStatus;
 
     @Column(name = "LANGUAGES_REQUIRED")
     private String languagesRequired;

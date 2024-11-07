@@ -1,7 +1,6 @@
 package com.ess.recruitment.infrastructure.controller;
 
-import com.ess.recruitment.core.dto.jobs.JobsDTO;
-import com.ess.recruitment.core.req.RecruitmentRequest;
+import com.ess.recruitment.core.Req.RecruitmentRequest;
 import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.infrastructure.domain.sql.service.impl.JobService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -19,6 +19,6 @@ public class PayAndBillingDetailsDTO implements Serializable {
     private String contractType;
     private int contractPeriod;
     private boolean markAsPreferred;
-    private Long templateId;
+
     private Long jobId;
 }

@@ -1,6 +1,8 @@
 package com.ess.recruitment.infrastructure.controller;
 
+import com.ess.recruitment.core.Req.TemplateReq;
 import com.ess.recruitment.core.dto.template.TemplateDTO;
+import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.infrastructure.domain.sql.service.impl.TemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -28,14 +30,14 @@ public class TemplateController {
         return ResponseEntity.ok(apiResponse);
     }
 
-    @GetMapping("getAllTemplate")
+    @PostMapping("getAllTemplate")
     public ResponseEntity<ApiResponse> getALLTemplate(@RequestBody TemplateReq templateReq){
-        ApiResponse  apiResponse= templateService.getAllTemplates( templateReq);
+        ApiResponse apiResponse= templateService.getAllTemplates( templateReq);
         return ResponseEntity.ok(apiResponse);
     }
 
     @PutMapping("updateTemplate/{id}")
-    public ResponseEntity<ApiResponse> updateTemplate(@PathVariable("id") Long id,TemplateReq templateReq ){
+    public ResponseEntity<ApiResponse> updateTemplate(@PathVariable("id") Long id,@RequestBody  TemplateReq templateReq ){
         ApiResponse  apiResponse= templateService.updateTemplate(id,templateReq);
         return ResponseEntity.ok(apiResponse);
     }

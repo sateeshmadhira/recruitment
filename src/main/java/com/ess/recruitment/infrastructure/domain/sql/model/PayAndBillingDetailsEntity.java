@@ -41,10 +41,6 @@ public class PayAndBillingDetailsEntity implements Serializable {
     private boolean markAsPreferred;
 
     @OneToOne
-    @JoinColumn(name = "TEMPLATE_ID")
-    private TemplateEntity templateEntity;
-
-    @OneToOne
     @JoinColumn(name = "JOB_ID")
     private JobsEntity jobsEntity;
 }
