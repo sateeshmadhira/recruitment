@@ -1,5 +1,6 @@
 package com.ess.recruitment.core.dto.jobs;
 
+import com.ess.recruitment.core.dto.PayAndBillingDetailsDTO;
 import com.ess.recruitment.core.utils.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,5 @@
-package com.ess.recruitment.core.req;
+package com.ess.recruitment.core.Req;
+
 
 import com.ess.recruitment.core.dto.jobs.JobsDTO;
 import com.ess.recruitment.core.dto.template.TemplateDTO;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RecruitmentRequest extends ReqFilter{
+public class RecruitmentRequest extends ReqFilter {
     private TemplateDTO templateDTO=new TemplateDTO();
     private JobsDTO jobsDTO=new JobsDTO();
 }

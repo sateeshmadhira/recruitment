@@ -6,10 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PayAndBillingDetailsDTO {
+public class PayAndBillingDetailsDTO implements Serializable {
     private Long payId;
     private EmploymentType jobType;
     private PayType payType;
@@ -17,6 +19,6 @@ public class PayAndBillingDetailsDTO {
     private String contractType;
     private int contractPeriod;
     private boolean markAsPreferred;
-    private Long templateId;
+
     private Long jobId;
 }

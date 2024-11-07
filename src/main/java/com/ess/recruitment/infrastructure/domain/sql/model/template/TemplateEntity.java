@@ -9,12 +9,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
 @Entity
-public class TemplateEntity {
+public class TemplateEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TEMPLATE_ID")
@@ -23,11 +27,20 @@ public class TemplateEntity {
     @Column(name = "TITLE")
     private String title;
 
-    @Column(name = "PRIMARY_SKILLS")
-    private String primarySkills;
+    @Column(name="TEMPLATE_CODE")
+    private String templateCode;
 
+    @ElementCollection
+    @Column(name = "PRIMARY_SKILLS")
+    private List<String> primarySkills =new ArrayList<>();
+
+    @ElementCollection
     @Column(name = "SECONDARY_SKILLS")
-    private String secondarySkills;
+    private List<String> secondarySkills =new ArrayList<>();
+
+    @ElementCollection
+    @Column(name = "TECHNICAL_SILLS")
+    private  List<String> technicalSkills =new ArrayList<>();
 
     @Column(name = "CITY")
     private String city;
@@ -41,11 +54,8 @@ public class TemplateEntity {
     @Column(name = "WORK_EXPERIENCE")
     private int workExperience;
 
-    @Column(name = "NO_OF_POSITIONS")
-    private int noOfPosition;
-
     @Enumerated(EnumType.STRING)
-    private WorkType remoteStatus;
+    private WorkType workType;
 
     @Column(name = "LANGUAGES")
     private String languagesRequired;
@@ -59,6 +69,8 @@ public class TemplateEntity {
     @Enumerated(EnumType.STRING)
     private Qualifications qualifications;
 
-    @OneToOne(mappedBy = "templateEntity",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private PayAndBillingDetailsEntity payAndBillingDetailsEntity;
+    @Column(name = "STATUS")
+    private  Integer status;
+
+
 }
