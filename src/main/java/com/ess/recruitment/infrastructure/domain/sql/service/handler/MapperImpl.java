@@ -1,10 +1,8 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.handler;
 
-import com.ess.recruitment.core.dto.*;
 import com.ess.recruitment.core.dto.jobs.JobsDTO;
 import com.ess.recruitment.core.dto.template.TemplateDTO;
 import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
-import com.ess.recruitment.infrastructure.domain.sql.model.template.PayAndBillingDetailsEntity;
 import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.ess.recruitment.core.Req;
+package com.ess.recruitment.core.req;
 
 
 import com.ess.recruitment.core.dto.jobs.JobsDTO;
