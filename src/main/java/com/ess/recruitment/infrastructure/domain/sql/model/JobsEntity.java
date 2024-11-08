@@ -1,6 +1,5 @@
 package com.ess.recruitment.infrastructure.domain.sql.model;
 
-import com.ess.recruitment.core.dto.JobDescriptionDTO;
 import com.ess.recruitment.core.dto.RecruitmentTeamDto;
 import com.ess.recruitment.core.utils.*;
 import jakarta.persistence.*;
