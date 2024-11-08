@@ -97,6 +97,7 @@ public class JobServiceImpl implements JobService {
                 totalCount,activeCount,inactiveCount,openCount,yetToStartCount,onGoingCount,completeCount);
 
         return new ApiResponse(true, "Getting all jobs", response, null);
+
     }
 
     // Update job status and set isActive accordingly

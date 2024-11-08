@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class RecruitmentRequest extends ReqFilter {
     private TemplateDTO templateDTO=new TemplateDTO();
     private JobsDTO jobsDTO=new JobsDTO();
+
 }
