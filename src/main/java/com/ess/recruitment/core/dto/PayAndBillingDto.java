@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PayAndBillingDetailsDTO {
+
+public class PayAndBillingDto {
     private Long payId;
     private JobType jobType;
     private PayType payType;
@@ -19,5 +20,6 @@ public class PayAndBillingDetailsDTO {
     private boolean markAsPreferred;
     private Long templateId;
     private Long jobId;
+
 
 }

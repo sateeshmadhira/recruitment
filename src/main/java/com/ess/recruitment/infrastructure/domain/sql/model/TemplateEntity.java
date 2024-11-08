@@ -1,6 +1,4 @@
 package com.ess.recruitment.infrastructure.domain.sql.model;
-
-import com.ess.recruitment.core.dto.PayAndBillingDetailsDTO;
 import com.ess.recruitment.core.utils.Country;
 import com.ess.recruitment.core.utils.Qualifications;
 import com.ess.recruitment.core.utils.RemoteStatus;

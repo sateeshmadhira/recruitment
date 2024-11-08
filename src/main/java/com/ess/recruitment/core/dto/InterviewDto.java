@@ -10,14 +10,16 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InterivewDto {
-    private LocalDate interivewTime;
+public class InterviewDto {
+    private Long interviewId;
+    private String interviewCode;
+    private LocalDate interviewTime;
     private LocalDate timeZone;
-    private String interivewtype;
+    private String interviewType;
     private Status status;
     private String stage;
     private String location;
-    private String descrption;
+    private String description;
    // private byte[] attachment;
     private String tagDetails;
     private String selectFeedbackTemplate;
@@ -26,6 +28,6 @@ public class InterivewDto {
     private String emailType;
     private boolean jobDescription;
     private boolean contactDetails;
-    private boolean periviousInterviewsFeedback;
+    private boolean previousInterviewsFeedback;
 
 }

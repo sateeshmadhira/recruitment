@@ -1,32 +1,21 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.handler;
 
-import com.ess.recruitment.core.dto.JobDescriptionDTO;
-import com.ess.recruitment.core.dto.JobsDTO;
-import com.ess.recruitment.core.dto.PayAndBillingDetailsDTO;
-import com.ess.recruitment.core.dto.TemplateDTO;
-import com.ess.recruitment.infrastructure.domain.sql.model.JobDescriptionEntity;
-import com.ess.recruitment.infrastructure.domain.sql.model.JobsEntity;
-import com.ess.recruitment.infrastructure.domain.sql.model.PayAndBillingDetailsEntity;
-import com.ess.recruitment.infrastructure.domain.sql.model.TemplateEntity;
-import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
+import com.ess.recruitment.core.dto.*;
+import com.ess.recruitment.infrastructure.domain.sql.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-
 public class MapperImpl implements MapperConfig {
-
     @Autowired
     private ModelMapper modelMapper;
-
-
     @Override
     public TemplateDTO toDto(TemplateEntity templateEntity) {
         TemplateDTO templateDTO=modelMapper.map(templateEntity,TemplateDTO.class);
         if(templateEntity.getPayAndBillingDetailsEntity()!=null){
-            PayAndBillingDetailsDTO payAndBillingDetailsDTO=
-                    modelMapper.map(templateEntity.getPayAndBillingDetailsEntity(),PayAndBillingDetailsDTO.class);
+            PayAndBillingDto payAndBillingDetailsDTO=
+                    modelMapper.map(templateEntity.getPayAndBillingDetailsEntity(),PayAndBillingDto.class);
             payAndBillingDetailsDTO.setTemplateId(templateDTO.getTemplateId());
             templateDTO.setPayAndBillingDetailsDTO(payAndBillingDetailsDTO);
         }
@@ -58,5 +47,17 @@ public class MapperImpl implements MapperConfig {
     @Override
     public JobsEntity toEntity(JobsDTO jobsDTO) {
         return null;
+    }
+
+
+    @Override
+    public InterviewDto toInterviewDto(InterviewEntity interviewEntity) {
+        InterviewDto interviewDto =modelMapper.map(interviewEntity, InterviewDto.class);
+        return interviewDto;
+    }
+    @Override
+    public InterviewEntity toInterviewEntity(InterviewDto interviewDto) {
+        InterviewEntity interviewEntity =modelMapper.map(interviewDto, InterviewEntity.class);
+        return interviewEntity;
     }
 }

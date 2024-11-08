@@ -27,5 +27,5 @@ public class TemplateDTO {
     private String jobDescription;
     private String approvalFlow;
     private Qualifications qualifications;
-    private PayAndBillingDetailsDTO payAndBillingDetailsDTO;
+    private PayAndBillingDto payAndBillingDetailsDTO;
 }

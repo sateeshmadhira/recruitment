@@ -12,20 +12,23 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table
 @Entity
-public class InterivewEntity {
+public class InterviewEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "INTERIVEW_ID")
-    private long interivewId;
+    @Column(name = "INTERVIEW_ID")
+    private Long interviewId;
 
-    @Column(name = "INTERIVEW_TIME")
-    private LocalDate interivewTime;
+    @Column(name = "INTERVIEW_CODE")
+    private String interviewCode;
+
+    @Column(name = "INTERVIEW_TIME")
+    private LocalDate interviewTime;
 
     @Column(name = "TIME_ZONE")
     private LocalDate timeZone;
 
-    @Column(name = "INTERIVEW_TYPE")
-    private String interivewtype;
+    @Column(name = "INTERVIEW_TYPE")
+    private String interviewType;
 
     @Column(name = "STATUS")
     private Status status;
@@ -36,8 +39,8 @@ public class InterivewEntity {
     @Column(name = "LOCATION")
     private String location;
 
-    @Column(name = "DESCRPTION")
-    private String descrption;
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     // private byte[] attachment;
 
@@ -47,7 +50,7 @@ public class InterivewEntity {
     @Column(name = "SELECT_FEEDBACK_TEMPLATE")
     private String selectFeedbackTemplate;
 
-    @Column(name = "INTERVIWER")
+    @Column(name = "INTERVIEWER")
     private String interviewer;
 
   //  @Column(name = "ATTACHMENTS")
@@ -62,7 +65,7 @@ public class InterivewEntity {
     @Column(name = "CONTACT_DETAILS")
     private boolean contactDetails;
 
-    @Column(name = "PERIVIOUS_INTERVIEWS_FEEDBACK")
-    private boolean periviousInterviewsFeedback;
+    @Column(name = "PREVIOUS_INTERVIEWS_FEEDBACK")
+    private boolean previousInterviewsFeedback;
 
 }

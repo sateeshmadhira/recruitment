@@ -30,7 +30,6 @@ public class JobsDTO {
     private String projectName;
     private String projectId;
     private String clientJobId;
-    private PayAndBillingDetailsDTO payAndBillingDetailsDTO;
     private RecruitmentTeamDTO recruitmentTeamDTO;
     private JobDescriptionDTO jobDescriptionDTO;
 
