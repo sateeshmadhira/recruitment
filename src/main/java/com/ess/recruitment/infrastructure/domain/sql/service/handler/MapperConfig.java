@@ -1,8 +1,6 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.handler;
 
-import com.ess.recruitment.core.dto.JobsDTO;
 import com.ess.recruitment.core.dto.ResourcePoolDto;
-import com.ess.recruitment.core.dto.TemplateDTO;
 import com.ess.recruitment.infrastructure.domain.sql.model.JobsEntity;
 import com.ess.recruitment.infrastructure.domain.sql.model.ResourcePoolEntity;
 import com.ess.recruitment.infrastructure.domain.sql.model.TemplateEntity;
