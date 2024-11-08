@@ -1,14 +1,7 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.handler;
 
-import com.ess.recruitment.core.dto.JobDescriptionDTO;
-import com.ess.recruitment.core.dto.JobsDTO;
-import com.ess.recruitment.core.dto.PayAndBillingDetailsDTO;
-import com.ess.recruitment.core.dto.TemplateDTO;
-import com.ess.recruitment.infrastructure.domain.sql.model.JobDescriptionEntity;
-import com.ess.recruitment.infrastructure.domain.sql.model.JobsEntity;
-import com.ess.recruitment.infrastructure.domain.sql.model.PayAndBillingDetailsEntity;
-import com.ess.recruitment.infrastructure.domain.sql.model.TemplateEntity;
-import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
+import com.ess.recruitment.core.dto.*;
+import com.ess.recruitment.infrastructure.domain.sql.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,21 +16,22 @@ public class MapperImpl implements MapperConfig {
 
     @Override
     public TemplateDTO toDto(TemplateEntity templateEntity) {
-        TemplateDTO templateDTO=modelMapper.map(templateEntity,TemplateDTO.class);
-        if(templateEntity.getPayAndBillingDetailsEntity()!=null){
-            PayAndBillingDetailsDTO payAndBillingDetailsDTO=
-                    modelMapper.map(templateEntity.getPayAndBillingDetailsEntity(),PayAndBillingDetailsDTO.class);
+        TemplateDTO templateDTO = modelMapper.map(templateEntity, TemplateDTO.class);
+        if (templateEntity.getPayAndBillingDetailsEntity() != null) {
+            PayAndBillingDetailsDTO payAndBillingDetailsDTO =
+                    modelMapper.map(templateEntity.getPayAndBillingDetailsEntity(), PayAndBillingDetailsDTO.class);
             payAndBillingDetailsDTO.setTemplateId(templateDTO.getTemplateId());
-            templateDTO.setPayAndBillingDetailsDTO(payAndBillingDetailsDTO);
+            templateDTO.setPayAndBillingDetailsDto(payAndBillingDetailsDTO);
         }
         return templateDTO;
     }
+
     @Override
     public TemplateEntity toEntity(TemplateDTO templateDTO) {
-        TemplateEntity templateEntity=modelMapper.map(templateDTO,TemplateEntity.class);
-        if(templateDTO.getPayAndBillingDetailsDTO()!=null){
-            PayAndBillingDetailsEntity payAndBillingDetailsEntity=
-                    modelMapper.map(templateDTO.getPayAndBillingDetailsDTO(), PayAndBillingDetailsEntity.class);
+        TemplateEntity templateEntity = modelMapper.map(templateDTO, TemplateEntity.class);
+        if (templateDTO.getPayAndBillingDetailsDto() != null) {
+            PayAndBillingDetailsEntity payAndBillingDetailsEntity =
+                    modelMapper.map(templateDTO.getPayAndBillingDetailsDto(), PayAndBillingDetailsEntity.class);
             payAndBillingDetailsEntity.setTemplateEntity(templateEntity);
             templateEntity.setPayAndBillingDetailsEntity(payAndBillingDetailsEntity);
         }
@@ -46,10 +40,10 @@ public class MapperImpl implements MapperConfig {
 
     @Override
     public JobsDTO toDto(JobsEntity jobsEntity) {
-        JobsDTO jobsDTO=modelMapper.map(jobsEntity,JobsDTO.class);
-        if(jobsEntity.getJobDescriptionEntity()!=null){
-            JobDescriptionDTO jobDescriptionDTO=modelMapper.map(jobsEntity.getJobDescriptionEntity(),JobDescriptionDTO.class);
-            jobDescriptionDTO.setJobId(jobsDTO.getJobId());
+        JobsDTO jobsDTO = modelMapper.map(jobsEntity, JobsDTO.class);
+        if (jobsEntity.getJobDescriptionEntity() != null) {
+            JobDescriptionDTO jobDescriptionDTO = modelMapper.map(jobsEntity.getJobDescriptionEntity(), JobDescriptionDTO.class);
+            jobDescriptionDTO.setJobId(jobDescriptionDTO.getJobId());
             jobsDTO.setJobDescriptionDTO(jobDescriptionDTO);
         }
         return jobsDTO;
@@ -57,6 +51,24 @@ public class MapperImpl implements MapperConfig {
 
     @Override
     public JobsEntity toEntity(JobsDTO jobsDTO) {
-        return null;
+        JobsEntity jobsEntity = modelMapper.map(jobsDTO, JobsEntity.class);
+        if (jobsDTO.getJobDescriptionDTO() != null) {
+            JobDescriptionEntity jobDescriptionEntity = modelMapper.map(jobsDTO.getJobDescriptionDTO(), JobDescriptionEntity.class);
+            jobDescriptionEntity.setJobsEntity(jobsEntity);
+            jobsEntity.setJobDescriptionEntity(jobDescriptionEntity);
+        }
+        return jobsEntity;
+    }
+
+    @Override
+    public ResourcePoolDto toDto(ResourcePoolEntity resourcePoolEntity) {
+        ResourcePoolDto resourcePoolDto=modelMapper.map(resourcePoolEntity,ResourcePoolDto.class);
+        return resourcePoolDto;
+    }
+
+    @Override
+    public ResourcePoolEntity toEntity(ResourcePoolDto resourcePoolDto) {
+        ResourcePoolEntity resourcePoolEntity=modelMapper.map(resourcePoolDto, ResourcePoolEntity.class);
+        return resourcePoolEntity;
     }
 }

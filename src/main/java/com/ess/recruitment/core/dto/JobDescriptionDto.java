@@ -1,14 +1,10 @@
 package com.ess.recruitment.core.dto;
-
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobDescriptionDto {
+public class JobDescriptionDTO {
     private Long id;
     private Long jobDomain;
     private Long jobDescription;

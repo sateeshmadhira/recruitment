@@ -2,7 +2,7 @@ package com.ess.recruitment.core.dto;
 
 
 import com.ess.recruitment.core.utils.Country;
-import com.ess.recruitment.core.utils.Qualification;
+import com.ess.recruitment.core.utils.Qualifications;
 import com.ess.recruitment.core.utils.RemoteStatus;
 import com.ess.recruitment.core.utils.State;
 import lombok.AllArgsConstructor;
@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TemplateDto {
-    private String templateId;
+public class TemplateDTO {
+    private Long templateId;
     private String title;
     private String primarySkills;
     private String secondarySkills;
@@ -26,6 +26,6 @@ public class TemplateDto {
     private String languagesRequired;
     private String jobDescription;
     private String approvalFlow;
-    private Qualification qualification;
-    private PayAndBillingDetailsDto payAndBillingDetailsDto;
+    private Qualifications qualification;
+    private PayAndBillingDetailsDTO payAndBillingDetailsDto;
 }

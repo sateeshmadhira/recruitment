@@ -1,8 +1,7 @@
 package com.ess.recruitment.infrastructure.domain.sql.model;
 
 import com.ess.recruitment.core.dto.JobDescriptionDTO;
-import com.ess.recruitment.core.dto.PayAndBillingDetailsDTO;
-import com.ess.recruitment.core.dto.RecruitmentTeamDTO;
+import com.ess.recruitment.core.dto.RecruitmentTeamDto;
 import com.ess.recruitment.core.utils.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,6 +25,9 @@ public class JobsEntity {
 
     @Column(name = "JOB_TITLE")
     private String jobTitle;
+
+    @Enumerated(EnumType.STRING)
+    private CustomerType customerType;
 
     @Enumerated(EnumType.STRING)
     private JobType jobType;
@@ -77,6 +79,42 @@ public class JobsEntity {
 
     @Column(name = "CLIENT_JOB_ID")
     private String clientJobId;
+
+    @Enumerated(EnumType.STRING)
+    private PayType payType;
+    @Column(name = "CTC")
+    private String ctc;
+    @Column(name = "CONTRACTPERIOD")
+    private String contractPeriod;
+    @Column(name = "MARKASPREFERRED")
+    private boolean markAsPreferred;
+    @Enumerated(EnumType.STRING)
+    private RecruitmentTeamDto recruitmentTeam;
+    @Enumerated(EnumType.STRING)
+    private Recruiters recruiters;
+    @Enumerated(EnumType.STRING)
+    private AdditionalRecruiters additionalReccruiters;
+    @Enumerated(EnumType.STRING)
+    private RecruitmentManager recruitmentManager;
+    @Enumerated(EnumType.STRING)
+    private DropDown dropDown;
+    @Enumerated(EnumType.STRING)
+    private AccountManager accountManager;
+    @Column(name = "MAX_SUBMISSIONS")
+    private String maximumSubmissions;
+    @Enumerated(EnumType.STRING)
+    private InterviewPanel interviewPanel;
+    @Enumerated(EnumType.STRING)
+    private JobDescription jobDescription;
+    @Enumerated(EnumType.STRING)
+    private JobDomain jobDomain;
+    @Column(name = "RECRUITERINSTRUCTIONS")
+    private String recruiterInstructions;
+    @Enumerated(EnumType.STRING)
+    private Attachments attachments;
+
+
+    private JobDescriptionDTO jobDescriptionDTO;
 
     @OneToOne(mappedBy = "jobsEntity",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private PayAndBillingDetailsEntity payAndBillingDetailsEntity;

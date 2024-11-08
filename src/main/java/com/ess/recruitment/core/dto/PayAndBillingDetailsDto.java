@@ -7,16 +7,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class PayAndBillingDetailsDto {
+@NoArgsConstructor
+public class PayAndBillingDetailsDTO {
     private Long payId;
-    private PayType payType;
     private JobType jobType;
+    private PayType payType;
     private int payRate;
     private String contractType;
     private int contractPeriod;
     private boolean markAsPreferred;
     private Long templateId;
     private Long jobId;
+
 }

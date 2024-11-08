@@ -44,7 +44,6 @@ public class RecruitmentTeamEntity {
     @Column(name = "ACCOUNT_MANAGER")
     private List<String> accountManager;
 
-
     @OneToOne
     @JoinColumn(name = "JOB_ID")
     private JobsEntity jobsEntity;
