@@ -1,11 +1,11 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
 
-import com.ess.recruitment.core.Req.TemplateReq;
+//import com.ess.recruitment.core.Req.TemplateReq;
 import com.ess.recruitment.core.dto.template.TemplateDTO;
+import com.ess.recruitment.core.req.TemplateReq;
 import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.core.resp.TemplatePageResponse;
 import com.ess.recruitment.core.utils.AppUtils;
-import com.ess.recruitment.infrastructure.domain.sql.model.PayAndBillingDetailsEntity;
 import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
 import com.ess.recruitment.infrastructure.domain.sql.repository.TemplateRepository;
 import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
@@ -33,7 +33,7 @@ public class TemplateServiceImpl implements TemplateService {
 
 
     @Override
-    public ApiResponse createTemplate(TemplateReq  templateReq) {
+    public ApiResponse createTemplate(TemplateReq templateReq) {
 
         try{
                 if (templateReq.getTemplateDTO()== null) {
@@ -87,8 +87,8 @@ public class TemplateServiceImpl implements TemplateService {
 
     public  ApiResponse count(){
         try {
-            Long active = templateRepository.countStatus(1);
-            Long inActive = templateRepository.countStatus(0);
+            Long active = templateRepository.countByStatus(1);
+            Long inActive = templateRepository.countByStatus(0);
             Long total = templateRepository.count();
 
         }catch (Exception e){

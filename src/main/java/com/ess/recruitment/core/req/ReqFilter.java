@@ -1,4 +1,4 @@
-package com.ess.recruitment.core.Req;
+package com.ess.recruitment.core.req;
 
 import lombok.Data;
 import org.springframework.data.domain.Sort;

@@ -17,7 +17,7 @@ public interface TemplateRepository extends JpaRepository<TemplateEntity,Long> {
 
     @Query("SELECT MAX(t.templateCode) FROM #{#entityName} t")
     Optional<String> findLatestCode();
-Long countStatus(int status);
+Long countByStatus(int status);
     @Query("SELECT t FROM TemplateEntity t " +
             "WHERE " +
             "LOWER(t.title) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +

@@ -1,19 +1,21 @@
 package com.ess.recruitment.infrastructure.domain.sql.model.jobs;
 
 import com.ess.recruitment.core.utils.*;
-import com.ess.recruitment.infrastructure.domain.sql.model.PayAndBillingDetailsEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Table
-public class JobsEntity {
+public class JobsEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "JOB_ID")
@@ -28,23 +30,19 @@ public class JobsEntity {
     @Column(name = "JOB_TITLE")
     private String jobTitle;
 
-    @Enumerated(EnumType.STRING)
-    private JobType jobType;
+    @Column(name = "IS_ACTIVE")
+    private Integer delFlag = 1;  // Default to active
 
+    @Enumerated(EnumType.STRING)
+    private EmploymentType employmentType;
+
+    @ElementCollection
     @Column(name = "PRIMARY_SKILLS")
-    private String primarySkills;
+    private List<String> primarySkills;
 
+    @ElementCollection
     @Column(name = "SECONDARY_SKILLS")
-    private String secondarySkills;
-
-    @Column(name = "CITY")
-    private String city;
-
-    @Enumerated(EnumType.STRING)
-    private Country country;
-
-    @Enumerated(EnumType.STRING)
-    private State state;
+    private List<String> secondarySkills;
 
     @Column(name = "WORK_EXPERIENCE")
     private int workExperience;
@@ -52,11 +50,35 @@ public class JobsEntity {
     @Column(name = "NO_OF_POSITIONS")
     private int noOfPositions;
 
+    @Column(name = "TECHNOLOGY")
+    private String technology;
+
+    @Column(name = "JOB_DESCRIPTION")
+    private String jobDescription;
+
+    @Column(name = "REL_EXP")
+    private int relevantExperience;
+
+    @Column(name = "DOMAIN")
+    private String domain;
+
+    @Column(name = "PAY_RATE")
+    private String payRate;
+
+    @Column(name = "TA_ASSIGNEE")
+    private String taAssignee;
+
+    @Column(name = "LOCATION")
+    private String location;
+
+    @Column(name = "CREATE_DATE")
+    private Date createDate;
+
     @Column(name = "TARGET_DATE")
     private Date targetDate;
 
     @Enumerated(EnumType.STRING)
-    private WorkType remoteStatus;
+    private WorkType workType;
 
     @Column(name = "LANGUAGES_REQUIRED")
     private String languagesRequired;
@@ -70,21 +92,19 @@ public class JobsEntity {
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
-    @Column(name = "PROJECT_NAME")
-    private String projectName;
-
     @Column(name = "PROJECT_ID")
     private String projectId;
 
     @Column(name = "CLIENT_JOB_ID")
     private String clientJobId;
 
-    @OneToOne(mappedBy = "jobsEntity",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private PayAndBillingDetailsEntity payAndBillingDetailsEntity;
+    @Column(name = "NO_OF_SUBMISSION")
+    private int noOfSubmission;
 
-    @OneToOne(mappedBy = "jobsEntity",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private RecruitmentTeamEntity recruitmentTeamEntity;
+    @Column(name = "VENDOR")
+    private String vendor;
 
-    @OneToOne(mappedBy = "jobsEntity",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private JobDescriptionEntity jobDescriptionEntity;
+    @Column(name = "ACCOUNT_MANAGER")
+    private List<String> accountManager;
+
 }

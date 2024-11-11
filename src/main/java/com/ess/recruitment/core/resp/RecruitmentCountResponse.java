@@ -12,7 +12,9 @@ public class RecruitmentCountResponse {
     private long totalCount;
     private long activeCount;
     private long inActiveCount;
+    private long openCount;
     private long yetToStartCount;
     private long onGoingCount;
     private long completedCount;
+//    private long closedCount;
 }

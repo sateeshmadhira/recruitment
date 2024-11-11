@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface MapperConfig {
      TemplateDTO toDtoTemplate(TemplateEntity templateEntity);
-//     TemplateEntity toEntityTemplate(TemplateDTO templateDTO);
 
      JobsDTO toDtoJob(JobsEntity jobsEntity);
 
