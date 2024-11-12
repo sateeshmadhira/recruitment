@@ -1,9 +1,9 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
 
-//import com.ess.recruitment.core.Req.TemplateReq;
-import com.ess.recruitment.core.dto.template.TemplateDTO;
 import com.ess.recruitment.core.req.TemplateReq;
+import com.ess.recruitment.core.dto.template.TemplateDTO;
 import com.ess.recruitment.core.resp.ApiResponse;
+import com.ess.recruitment.core.resp.TemplateCountResponse;
 import com.ess.recruitment.core.resp.TemplatePageResponse;
 import com.ess.recruitment.core.utils.AppUtils;
 import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
@@ -17,12 +17,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TemplateServiceImpl implements TemplateService {
@@ -33,7 +33,7 @@ public class TemplateServiceImpl implements TemplateService {
 
 
     @Override
-    public ApiResponse createTemplate(TemplateReq templateReq) {
+    public ApiResponse createTemplate(TemplateReq  templateReq) {
 
         try{
                 if (templateReq.getTemplateDTO()== null) {
@@ -52,7 +52,7 @@ public class TemplateServiceImpl implements TemplateService {
 
                 TemplatePageResponse templatePageResponse = new TemplatePageResponse();
                 templatePageResponse.setData(List.of(saveDto));
-                return AppUtils.apiResponseSuccess("Template Saved Suceessfull",templatePageResponse,HttpStatus.OK) ;
+                return AppUtils.apiResponseSuccess("Template Saved Successfully",templatePageResponse,HttpStatus.OK) ;
         }catch (Exception e){
             return AppUtils.apiResponseError(e.getMessage(),null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -76,7 +76,7 @@ public class TemplateServiceImpl implements TemplateService {
 
 
             } else {
-                return AppUtils.apiResponseSuccess(" No Templates Found ,",null,HttpStatus.OK);
+                return AppUtils.apiResponseSuccess("No Templates Found",null,HttpStatus.OK);
             }
         }
         catch (Exception e){
@@ -84,17 +84,27 @@ public class TemplateServiceImpl implements TemplateService {
         }
     }
 
-
+@Override
     public  ApiResponse count(){
         try {
             Long active = templateRepository.countByStatus(1);
             Long inActive = templateRepository.countByStatus(0);
             Long total = templateRepository.count();
 
+            TemplateCountResponse  templateCountResponse = new TemplateCountResponse();
+            templateCountResponse.setActiveCount(active);
+            templateCountResponse.setInactiveCount(inActive);
+            templateCountResponse.setTotalCount(total);
+
+            TemplatePageResponse templatePageResponse =new TemplatePageResponse();
+            templatePageResponse.setData(List.of(templateCountResponse));
+
+            return    AppUtils.apiResponseSuccess("Templates Retrieve Successfully",templatePageResponse, HttpStatus.OK);
+
         }catch (Exception e){
-            return null;
+            return  AppUtils.apiResponseError(e.getMessage(), null,HttpStatus.INTERNAL_SERVER_ERROR);
+
         }
-        return  null;
     }
 
     @Transactional
@@ -108,13 +118,18 @@ public class TemplateServiceImpl implements TemplateService {
             );
 
             Page<TemplateEntity> templateEntity;
+            Integer status = templateReq.getTemplateDTO().getStatus();
+
 
             if(templateReq.getSearchKeyword()!=null) {
                  templateEntity  = templateRepository.searchTemplatesByKeyword(templateReq.getSearchKeyword(), pageable);
+            }else if (status!=null) {
+                templateEntity= templateRepository.findByStatus(status,pageable);
             }else {
-                templateEntity  = templateRepository.findAll(pageable);
 
+                templateEntity = templateRepository.findAll(pageable);
             }
+
             List<TemplateDTO> templateDTOList = new ArrayList<>();
            if(!templateEntity.isEmpty()){
             templateEntity.stream().map(templateEntity1 -> {
@@ -125,7 +140,9 @@ public class TemplateServiceImpl implements TemplateService {
 
             TemplatePageResponse templatePageResponse = new TemplatePageResponse();
             templatePageResponse.setData(templateDTOList);
+
             AppUtils.templaytePageResponseMethod(templateEntity);
+
             return  AppUtils.apiResponseSuccess("",templatePageResponse,HttpStatus.OK);
         }else {
             return  AppUtils.apiResponseError("",null,HttpStatus.NOT_FOUND);
@@ -135,6 +152,46 @@ public class TemplateServiceImpl implements TemplateService {
             return  AppUtils.apiResponseError("Error : "+e.getMessage(), null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    public ApiResponse search(TemplateReq templateReq) {
+        try {
+            Pageable pageable = PageRequest.of(
+                    templateReq.getPage(),
+                    templateReq.getPageSize(),
+                    Sort.by(templateReq.getDirection(), templateReq.getSortBy())
+            );
+
+            Page<TemplateEntity> templateEntities;
+            String searchKey = templateReq.getSearchKeyword();
+
+            if (searchKey == null || searchKey.trim().isEmpty()) {
+                templateEntities = templateRepository.findAll(pageable);
+            } else {
+                templateEntities = templateRepository.searchTemplatesByKeyword(searchKey, pageable);
+            }
+
+            List<TemplateDTO> templateDTOList = templateEntities.stream()
+                    .map(mapperConfig::toDtoTemplate)
+                    .collect(Collectors.toList());
+
+            if (!templateDTOList.isEmpty()) {
+                TemplatePageResponse templatePageResponse = new TemplatePageResponse();
+                templatePageResponse.setData(templateDTOList);
+
+                AppUtils.templaytePageResponseMethod(templateEntities);
+
+                return AppUtils.apiResponseSuccess("Templates fetched successfully", templatePageResponse, HttpStatus.OK);
+            } else {
+                return AppUtils.apiResponseError("No templates found", null, HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            System.err.println("Error occurred during template search: " + e);
+            e.printStackTrace();
+
+            return AppUtils.apiResponseError("Error: " + e.getMessage(), null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     public ApiResponse updateTemplate(Long id, TemplateReq templateReq) {
         try {

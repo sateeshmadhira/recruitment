@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/template")
 @CrossOrigin("*")
@@ -33,6 +31,19 @@ public class TemplateController {
         ApiResponse apiResponse= templateService.getAllTemplates( templateReq);
         return ResponseEntity.ok(apiResponse);
     }
+
+    @GetMapping("countTemp")
+    public ResponseEntity<ApiResponse> countActiveInActiveTemp( ){
+        ApiResponse  apiResponse = templateService.count();
+        return ResponseEntity.ok(apiResponse);
+    }
+    @PostMapping("search")
+    public ResponseEntity<ApiResponse> searchTemplate(@RequestBody TemplateReq templateReq){
+        ApiResponse apiResponse= templateService.search(templateReq);
+        return ResponseEntity.ok(apiResponse);
+    }
+
+
 
     @PutMapping("updateTemplate/{id}")
     public ResponseEntity<ApiResponse> updateTemplate(@PathVariable("id") Long id,@RequestBody  TemplateReq templateReq ){

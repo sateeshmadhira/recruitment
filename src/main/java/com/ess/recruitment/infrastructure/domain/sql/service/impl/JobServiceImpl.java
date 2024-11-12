@@ -59,8 +59,9 @@ public class JobServiceImpl implements JobService {
             JobsEntity jobsEntity = mapperConfig.toEntityJob(recruitmentRequest.getJobsDTO());
             jobsEntity.setJobCode(jobCode);
             JobsEntity savedEntity = jobRepository.save(jobsEntity);
-            return new ApiResponse(true, "Job created successfully",
-                    mapperConfig.toDtoJob(savedEntity), null);
+          //  return new ApiResponse(true, "Job created successfully",
+           //         mapperConfig.toDtoJob(savedEntity), null);
+            return null;
         } catch (Exception e) {
             throw new IllegalArgumentException("Failed to create job: " + e.getMessage());
         }
@@ -70,9 +71,11 @@ public class JobServiceImpl implements JobService {
     @Override
     @Transactional
     public ApiResponse getJobById(Long id) {
-        return jobRepository.findById(id)
-                .map(entity -> new ApiResponse(true, "Job found", mapperConfig.toDtoJob(entity), null))
-                .orElseThrow(() -> new EntityNotFoundException("Job with ID " + id + " not found"));
+//        return jobRepository.findById(id)
+//                .map(entity -> new ApiResponse(true, "Job found", mapperConfig.toDtoJob(entity), null))
+//                .orElseThrow(() -> new EntityNotFoundException("Job with ID " + id + " not found"));
+
+        return null;
     }
 
     // Get All Jobs With Counts
@@ -96,7 +99,9 @@ public class JobServiceImpl implements JobService {
         RecruitmentCountResponse response = new RecruitmentCountResponse(
                 totalCount,activeCount,inactiveCount,openCount,yetToStartCount,onGoingCount,completeCount);
 
-        return new ApiResponse(true, "Getting all jobs", response, null);
+       // return new ApiResponse(true, "Getting all jobs", response, null);
+        return null;
+
     }
 
     // Update job status and set isActive accordingly
@@ -119,8 +124,9 @@ public class JobServiceImpl implements JobService {
                 existingJob.setDelFlag(jobDTO.getStatus().equals(Status.COMPLETE) ? 0 : 1);
             }
             JobsEntity updatedEntity = jobRepository.save(existingJob);
-            return new ApiResponse(true, "Job updated successfully",
-                    mapperConfig.toDtoJob(updatedEntity), null);
+//            return new ApiResponse(true, "Job updated successfully",
+//                    mapperConfig.toDtoJob(updatedEntity), null);
+            return null;
         } else {
             throw new EntityNotFoundException("Job with ID " + id + " not found");
         }
@@ -135,7 +141,8 @@ public class JobServiceImpl implements JobService {
             throw new EntityNotFoundException("Job not found with ID: " + jobId);
         }
         jobRepository.softDeleteJob(jobId);
-        return new ApiResponse(true, "Soft delete success", null, null);
+    //    return new ApiResponse(true, "Soft delete success", null, null);
+        return null;
     }
 
     // Get All Jobs with Pagination
@@ -149,13 +156,14 @@ public class JobServiceImpl implements JobService {
                 .collect(Collectors.toList());
 
         PaginationResponse<JobsDTO> paginationResponse = new PaginationResponse<>(
-            jobPage.getTotalPages(),
+                jobPage.getTotalPages(),
                 jobPage.getNumber(),
                 jobPage.getTotalElements(),
                 jobPage.getSize(),
                 jobs
         );
-        return new ApiResponse(true, "Jobs retrieved successfully", null, paginationResponse);
+      //  return new ApiResponse(true, "Jobs retrieved successfully", null, paginationResponse);
+        return null;
     }
 
     // Global Search for Jobs by jobCode
@@ -178,9 +186,11 @@ public class JobServiceImpl implements JobService {
         );
 
         if (jobDTOs.isEmpty()) {
-            return new ApiResponse(false, "No jobs found matching the criteria", null, paginationResponse);
+          //  return new ApiResponse(false, "No jobs found matching the criteria", null, paginationResponse);
+            return null;
         }
 
-        return new ApiResponse(true, "Jobs found", null, paginationResponse);
+    //    return new ApiResponse(true, "Jobs found", null, paginationResponse);
+            return null;
     }
 }
