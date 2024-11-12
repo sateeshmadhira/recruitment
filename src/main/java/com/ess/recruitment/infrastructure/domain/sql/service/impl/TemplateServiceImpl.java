@@ -1,6 +1,4 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
-
-//import com.ess.recruitment.core.Req.TemplateReq;
 import com.ess.recruitment.core.dto.template.TemplateDTO;
 import com.ess.recruitment.core.req.TemplateReq;
 import com.ess.recruitment.core.resp.ApiResponse;
@@ -9,7 +7,6 @@ import com.ess.recruitment.core.utils.AppUtils;
 import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
 import com.ess.recruitment.infrastructure.domain.sql.repository.TemplateRepository;
 import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
-
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,9 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
