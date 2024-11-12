@@ -1,6 +1,4 @@
 package com.ess.recruitment.infrastructure.controller;
-
-import com.ess.recruitment.core.dto.jobs.JobsDTO;
 import com.ess.recruitment.core.req.RecruitmentRequest;
 import com.ess.recruitment.core.req.SearchReq;
 import com.ess.recruitment.core.resp.ApiResponse;
@@ -52,11 +50,11 @@ public class JobsController {
     }
 
 //    // Get All Jobs with Pagination
-//    @GetMapping
-//    public ResponseEntity<ApiResponse> getAllJobs(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int pageSize) {
-//        ApiResponse response = jobService.getAllJobs(page, pageSize);
-//        return ResponseEntity.ok(response);
-//    }
+    @GetMapping
+    public ResponseEntity<ApiResponse> getAllJobs(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int pageSize) {
+        ApiResponse response = jobService.getAllJobs(page, pageSize);
+        return ResponseEntity.ok(response);
+    }
 
     // Global Search by jobCode with Pagination
     @PostMapping("/search")

@@ -120,6 +120,79 @@ public class JobServiceImpl implements JobService {
                 existingJob.setStatus(jobDTO.getStatus());
                 existingJob.setDelFlag(jobDTO.getStatus().equals(Status.COMPLETE) ? 0 : 1);
             }
+            if (jobDTO.getTechnology() != null) {
+                existingJob.setTechnology(jobDTO.getTechnology());
+            }
+            if (jobDTO.getEmploymentType() != null) {
+                existingJob.setEmploymentType(jobDTO.getEmploymentType());
+            }
+            if (jobDTO.getPrimarySkills() != null) {
+                existingJob.setPrimarySkills(jobDTO.getPrimarySkills());
+            }
+            if (jobDTO.getSecondarySkills() != null) {
+                existingJob.setSecondarySkills(jobDTO.getSecondarySkills());
+            }
+            if (jobDTO.getJobDescription() != null) {
+                existingJob.setJobDescription(jobDTO.getJobDescription());
+            }
+            if (jobDTO.getRelevantExperience() > 0) {
+                existingJob.setRelevantExperience(jobDTO.getRelevantExperience());
+            }
+            if (jobDTO.getDomain() != null) {
+                existingJob.setDomain(jobDTO.getDomain());
+            }
+            if (jobDTO.getPayRate() != null) {
+                existingJob.setPayRate(jobDTO.getPayRate());
+            }
+            if (jobDTO.getTaAssignee() != null) {
+                existingJob.setTaAssignee(jobDTO.getTaAssignee());
+            }
+            if (jobDTO.getLocation() != null) {
+                existingJob.setLocation(jobDTO.getLocation());
+            }
+            if (jobDTO.getCreateDate() != null) {
+                existingJob.setCreateDate(jobDTO.getCreateDate());
+            }
+            if (jobDTO.getNoOfSubmission() > 0) {
+                existingJob.setNoOfSubmission(jobDTO.getNoOfSubmission());
+            }
+            if (jobDTO.getVendor() != null) {
+                existingJob.setVendor(jobDTO.getVendor());
+            }
+            if (jobDTO.getWorkExperience() > 0) {
+                existingJob.setWorkExperience(jobDTO.getWorkExperience());
+            }
+            if (jobDTO.getNoOfPositions() > 0) {
+                existingJob.setNoOfPositions(jobDTO.getNoOfPositions());
+            }
+            if (jobDTO.getTargetDate() != null) {
+                existingJob.setTargetDate(jobDTO.getTargetDate());
+            }
+            if (jobDTO.getWorkType() != null) {
+                existingJob.setWorkType(jobDTO.getWorkType());
+            }
+            if (jobDTO.getLanguagesRequired() != null) {
+                existingJob.setLanguagesRequired(jobDTO.getLanguagesRequired());
+            }
+            if (jobDTO.getQualifications() != null) {
+                existingJob.setQualifications(jobDTO.getQualifications());
+            }
+            if (jobDTO.getIndustry() != null) {
+                existingJob.setIndustry(jobDTO.getIndustry());
+            }
+            if (jobDTO.getPriority() != null) {
+                existingJob.setPriority(jobDTO.getPriority());
+            }
+            if (jobDTO.getProjectId() != null) {
+                existingJob.setProjectId(jobDTO.getProjectId());
+            }
+            if (jobDTO.getClientJobId() != null) {
+                existingJob.setClientJobId(jobDTO.getClientJobId());
+            }
+            if (jobDTO.getAccountManager() != null) {
+                existingJob.setAccountManager(jobDTO.getAccountManager());
+            }
+
             JobsEntity updatedEntity = jobRepository.save(existingJob);
             return new ApiResponse(true, "Job updated successfully",
                     mapperConfig.toDtoJob(updatedEntity), null);
@@ -127,6 +200,7 @@ public class JobServiceImpl implements JobService {
             throw new EntityNotFoundException("Job with ID " + id + " not found");
         }
     }
+
 
     // Soft Delete Job
     @Override
