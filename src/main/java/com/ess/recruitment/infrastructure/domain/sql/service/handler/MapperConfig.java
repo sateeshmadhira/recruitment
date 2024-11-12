@@ -8,6 +8,8 @@ import com.ess.recruitment.infrastructure.domain.sql.model.ResourcePoolEntity;
 import com.ess.recruitment.core.dto.InterviewDto;
 import com.ess.recruitment.infrastructure.domain.sql.model.InterviewEntity;
 import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
+import com.ess.recruitment.core.dto.CandidateSubmissionDto;
+import com.ess.recruitment.infrastructure.domain.sql.model.CandidateSubmissionEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,6 +18,9 @@ public interface MapperConfig {
 
      JobsDTO toDtoJob(JobsEntity jobsEntity);
      JobsEntity toEntityJob(JobsDTO jobsDTO);
+    CandidateSubmissionDto toCandidateDTO(CandidateSubmissionEntity entity);
+
+    CandidateSubmissionEntity toCandidateEntity(CandidateSubmissionDto dto);
 
      InterviewDto toInterviewDto(InterviewEntity interviewEntity);
      InterviewEntity toInterviewEntity(InterviewDto interviewDto);

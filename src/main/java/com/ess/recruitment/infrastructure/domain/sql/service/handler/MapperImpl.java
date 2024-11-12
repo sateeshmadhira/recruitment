@@ -8,6 +8,8 @@ import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
 import com.ess.recruitment.core.dto.*;
 import com.ess.recruitment.infrastructure.domain.sql.model.*;
 import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
+import com.ess.recruitment.core.dto.CandidateSubmissionDto;
+import com.ess.recruitment.infrastructure.domain.sql.model.CandidateSubmissionEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,10 +26,17 @@ public class MapperImpl implements MapperConfig {
         return jobsDTO;
     }
 
-    @Override
-    public JobsEntity toEntityJob(JobsDTO jobsDTO) {
-        JobsEntity jobsEntity=modelMapper.map(jobsDTO,JobsEntity.class);
-        return jobsEntity;
+
+    public CandidateSubmissionDto toCandidateDTO(CandidateSubmissionEntity entity) {
+        CandidateSubmissionDto candidateSubmissionDto =modelMapper.map(entity,CandidateSubmissionDto.class);
+        return candidateSubmissionDto;
+    }
+
+
+
+    public CandidateSubmissionEntity toCandidateEntity(CandidateSubmissionDto dto) {
+        CandidateSubmissionEntity candidateSubmissionEntity = modelMapper.map(dto,CandidateSubmissionEntity.class);
+        return candidateSubmissionEntity;
     }
 
 
@@ -65,3 +74,4 @@ public class MapperImpl implements MapperConfig {
         return templateEntity;
     }
 }
+

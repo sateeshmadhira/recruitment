@@ -1,6 +1,5 @@
 package com.ess.recruitment.core.utils;
 
-import com.ess.recruitment.core.constants.TemplateConstants;
 import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.core.resp.TemplatePageResponse;
 
