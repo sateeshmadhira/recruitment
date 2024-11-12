@@ -26,6 +26,12 @@ public class MapperImpl implements MapperConfig {
         return jobsDTO;
     }
 
+    @Override
+    public JobsEntity toEntityJob(JobsDTO jobsDTO) {
+        JobsEntity jobsEntity=modelMapper.map(jobsDTO,JobsEntity.class);
+        return jobsEntity;
+    }
+
 
     public CandidateSubmissionDto toCandidateDTO(CandidateSubmissionEntity entity) {
         CandidateSubmissionDto candidateSubmissionDto =modelMapper.map(entity,CandidateSubmissionDto.class);
