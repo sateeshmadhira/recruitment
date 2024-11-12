@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class RecruitmentCountResponse {
 
     private long totalCount;
-    private long activeCount;
+    private long totalActiveCount;
     private long inActiveCount;
-    private long openCount;
+    private long activeCount;
     private long yetToStartCount;
     private long onGoingCount;
     private long completedCount;

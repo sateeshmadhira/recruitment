@@ -1,15 +1,15 @@
-package com.ess.recruitment.infrastructure.domain.sql.model;
+package com.ess.recruitment.infrastructure.domain.sql.model.jobs;
 
-import com.ess.recruitment.core.dto.JobDescriptionDTO;
-import com.ess.recruitment.core.dto.PayAndBillingDetailsDTO;
-import com.ess.recruitment.core.dto.RecruitmentTeamDTO;
 import com.ess.recruitment.core.utils.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor

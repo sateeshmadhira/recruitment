@@ -21,6 +21,9 @@ public class InterviewEntity {
     @Column(name = "INTERVIEW_CODE")
     private String interviewCode;
 
+    @Column(name = "IS_ACTIVE")
+    private Integer delFlag = 1;
+
     @Column(name = "INTERVIEW_TIME")
     private LocalDate interviewTime;
 
@@ -53,8 +56,8 @@ public class InterviewEntity {
     @Column(name = "INTERVIEWER")
     private String interviewer;
 
-  //  @Column(name = "ATTACHMENTS")
-  //  private String attachments;
+    @Column(name = "ATTACHMENTS")
+    private String attachments;
 
     @Column(name = "EMAIL_TYPE")
     private String emailType;

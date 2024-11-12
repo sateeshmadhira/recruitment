@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import java.time.LocalDate;
 
 @Data
@@ -16,11 +17,11 @@ public class InterviewDto {
     private LocalDate interviewTime;
     private LocalDate timeZone;
     private String interviewType;
+    private Integer delFlag = 1;
     private Status status;
     private String stage;
     private String location;
     private String description;
-   // private byte[] attachment;
     private String tagDetails;
     private String selectFeedbackTemplate;
     private String interviewer;
