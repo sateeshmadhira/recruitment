@@ -1,7 +1,7 @@
 package com.ess.recruitment.infrastructure.domain.sql.repository;
 
-import com.ess.recruitment.core.dto.TemplateDTO;
-import com.ess.recruitment.infrastructure.domain.sql.model.TemplateEntity;
+
+import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,20 +14,23 @@ import java.util.Optional;
 
 @Repository
 public interface TemplateRepository extends JpaRepository<TemplateEntity,Long> {
-  //  @Query("SELECT MAX(t.templateCode) FROM TemplateEntity t WHERE t.templateId = :templateId")
-  //  Optional<String> findHighestTemplateCodeByTemplateId(@Param("templateId") Long templateId);
 
+    @Query("SELECT MAX(t.templateCode) FROM #{#entityName} t")
+    Optional<String> findLatestCode();
+Long countByStatus(int status);
+
+
+    Page<TemplateEntity> findByStatus(int status,Pageable pageable);
 
 
     @Query("SELECT t FROM TemplateEntity t " +
-            "LEFT JOIN t.payAndBillingDetailsEntity p " +
-            "WHERE " +
+            "WHERE (:searchKeyword IS NULL OR " +
             "LOWER(t.title) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
-            "OR LOWER(t.primarySkills) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
-            "OR LOWER(t.secondarySkills) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
+            "OR LOWER(t.templateCode) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
             "OR LOWER(t.city) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
-            "OR LOWER(p.jobType) LIKE LOWER(CONCAT('%', :searchKeyword, '%'))")
-    Page<TemplateEntity> searchTemplatesByKeyword(@Param("searchKeyword") String searchKeyword, Pageable pageable);
+            "OR LOWER(t.languagesRequired) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
+            "OR LOWER(t.jobDescription) LIKE LOWER(CONCAT('%', :searchKeyword, '%'))) ")
+    Page<TemplateEntity> searchTemplatesByKeyword(String searchKeyword, Pageable pageable);
 
 
 }
