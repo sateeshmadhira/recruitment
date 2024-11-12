@@ -1,14 +1,12 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
 
 import com.ess.recruitment.core.dto.CandidateSubmissionDto;
-import com.ess.recruitment.core.dto.jobs.JobsDTO;
 import com.ess.recruitment.core.req.RecruitmentRequest;
 import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.core.resp.PaginationResponse;
 import com.ess.recruitment.core.resp.RecruitmentCountResponse;
 import com.ess.recruitment.core.utils.Status;
 import com.ess.recruitment.infrastructure.domain.sql.model.CandidateSubmissionEntity;
-import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
 import com.ess.recruitment.infrastructure.domain.sql.repository.CandidateSubmissionRepository;
 import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
 
