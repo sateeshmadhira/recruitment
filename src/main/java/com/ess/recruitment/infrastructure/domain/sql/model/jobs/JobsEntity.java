@@ -83,11 +83,6 @@ public class JobsEntity implements Serializable {
     @Column(name = "LANGUAGES_REQUIRED")
     private String languagesRequired;
 
-    @Enumerated(EnumType.STRING)
-    private Qualifications qualifications;
-
-    @Enumerated(EnumType.STRING)
-    private Industry industry;
 
     @Enumerated(EnumType.STRING)
     private Priority priority;

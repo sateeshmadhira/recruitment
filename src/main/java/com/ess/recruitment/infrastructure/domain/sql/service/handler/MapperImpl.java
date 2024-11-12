@@ -1,5 +1,6 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.handler;
 
+import com.ess.recruitment.core.dto.ResourcePoolDto;
 import com.ess.recruitment.core.dto.jobs.JobsDTO;
 import com.ess.recruitment.core.dto.template.TemplateDTO;
 import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
@@ -50,5 +51,17 @@ public class MapperImpl implements MapperConfig {
     public InterviewEntity toInterviewEntity(InterviewDto interviewDto) {
         InterviewEntity interviewEntity =modelMapper.map(interviewDto, InterviewEntity.class);
         return interviewEntity;
+    }
+
+    @Override
+    public ResourcePoolDto toDtoResource(ResourcePoolEntity resourcePoolEntity) {
+        ResourcePoolDto resourcePoolDto=modelMapper.map(resourcePoolEntity,ResourcePoolDto.class);
+        return resourcePoolDto;
+    }
+
+    @Override
+    public ResourcePoolEntity toEntityResource(ResourcePoolDto resourcePoolDto) {
+        ResourcePoolEntity resourcePoolEntity=modelMapper.map(resourcePoolDto, ResourcePoolEntity.class);
+        return resourcePoolEntity;
     }
 }

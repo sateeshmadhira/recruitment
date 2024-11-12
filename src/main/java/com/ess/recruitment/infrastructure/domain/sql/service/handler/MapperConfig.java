@@ -5,6 +5,8 @@ import com.ess.recruitment.core.dto.jobs.JobsDTO;
 import com.ess.recruitment.core.dto.template.TemplateDTO;
 
 import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
+import com.ess.recruitment.core.dto.ResourcePoolDto;
+import com.ess.recruitment.infrastructure.domain.sql.model.ResourcePoolEntity;
 import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
 import com.ess.recruitment.core.dto.InterviewDto;
 
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface MapperConfig {
-     TemplateDTO toDtoTemplate(TemplateEntity templateEntity);
+
 
      JobsDTO toDtoJob(JobsEntity jobsEntity);
 
@@ -26,5 +28,9 @@ public interface MapperConfig {
 
      InterviewEntity toInterviewEntity(InterviewDto interviewDto);
 
+
+
+     ResourcePoolDto toDtoResource(ResourcePoolEntity resourcePoolEntity);
+     ResourcePoolEntity toEntityResource(ResourcePoolDto resourcePoolDto);
 
 }

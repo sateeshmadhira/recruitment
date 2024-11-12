@@ -33,8 +33,6 @@ public class JobsDTO {
     private Date targetDate;
     private WorkType workType;
     private String languagesRequired;
-    private Qualifications qualifications;
-    private Industry industry;
     private Priority priority;
     private String projectId;
     private String clientJobId;
