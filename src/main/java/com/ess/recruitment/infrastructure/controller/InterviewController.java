@@ -1,7 +1,5 @@
 package com.ess.recruitment.infrastructure.controller;
 
-
-import com.ess.recruitment.core.dto.InterviewDto;
 import com.ess.recruitment.core.req.RecruitmentRequest;
 import com.ess.recruitment.core.req.SearchReq;
 import com.ess.recruitment.core.resp.ApiResponse;
