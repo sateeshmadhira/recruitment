@@ -4,6 +4,8 @@ import com.ess.recruitment.core.dto.jobs.JobsDTO;
 import com.ess.recruitment.core.dto.template.TemplateDTO;
 import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
 import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
+import com.ess.recruitment.core.dto.*;
+import com.ess.recruitment.infrastructure.domain.sql.model.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,5 +38,17 @@ public class MapperImpl implements MapperConfig {
     public JobsEntity toEntityJob(JobsDTO jobsDTO) {
         JobsEntity jobsEntity=modelMapper.map(jobsDTO,JobsEntity.class);
         return jobsEntity;
+    }
+
+
+    @Override
+    public InterviewDto toInterviewDto(InterviewEntity interviewEntity) {
+        InterviewDto interviewDto =modelMapper.map(interviewEntity, InterviewDto.class);
+        return interviewDto;
+    }
+    @Override
+    public InterviewEntity toInterviewEntity(InterviewDto interviewDto) {
+        InterviewEntity interviewEntity =modelMapper.map(interviewDto, InterviewEntity.class);
+        return interviewEntity;
     }
 }

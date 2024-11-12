@@ -1,4 +1,5 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
+
 import com.ess.recruitment.core.dto.jobs.JobsDTO;
 import com.ess.recruitment.core.req.RecruitmentRequest;
 import com.ess.recruitment.core.resp.ApiResponse;
@@ -8,7 +9,6 @@ import com.ess.recruitment.core.utils.Status;
 import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
 import com.ess.recruitment.infrastructure.domain.sql.repository.JobRepository;
 import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
-
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import javax.net.ssl.SSLEngineResult;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -56,7 +54,7 @@ public class JobServiceImpl implements JobService {
                         return "JOB-" + String.format("%03d", nextCodeNumber);
                     })
                     .orElse("JOB-001");
-            JobsEntity jobsEntity = mapperConfig.toEntityJob(recruitmentRequest.getJobsDTO());
+           JobsEntity jobsEntity = mapperConfig.toEntityJob(recruitmentRequest.getJobsDTO());
             jobsEntity.setJobCode(jobCode);
             JobsEntity savedEntity = jobRepository.save(jobsEntity);
             return new ApiResponse(true, "Job created successfully",
@@ -97,6 +95,7 @@ public class JobServiceImpl implements JobService {
                 totalCount,activeCount,inactiveCount,openCount,yetToStartCount,onGoingCount,completeCount);
 
         return new ApiResponse(true, "Getting all jobs", response, null);
+
     }
 
     // Update job status and set isActive accordingly
