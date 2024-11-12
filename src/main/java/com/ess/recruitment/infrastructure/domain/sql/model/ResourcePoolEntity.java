@@ -6,17 +6,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Entity
 @Table
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ResourcePoolEntity {
+public class ResourcePoolEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long poolId;
+
+    private String resourceCode;
+
     @Column(name = "FIRST_NAME")
     private String firstName;
+
+    @Column(name = "IS_ACTIVE")
+    private Integer delFlag=1;
+
     @Column(name = "MIDDLE_NAME")
     private String middleName;
     @Column(name = "LAST_NAME")
@@ -51,6 +61,10 @@ public class ResourcePoolEntity {
     private Long pinCode;
     @Column(name = "SKILLS")
     private String skills;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     @Column(name = "LINKEDINURL")
     private String linkedInUrl;
     @Column(name = "TWITTERURL")

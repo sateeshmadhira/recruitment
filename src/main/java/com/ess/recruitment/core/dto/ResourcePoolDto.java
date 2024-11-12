@@ -9,9 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResourcePoolDto {
+    private String resourceCode;
     private Long resourcePoolId;
     private Long poolId;
     private String firstName;
+    private Integer delFlag=1;
     private String middleName;
     private String lastName;
     private String email;
