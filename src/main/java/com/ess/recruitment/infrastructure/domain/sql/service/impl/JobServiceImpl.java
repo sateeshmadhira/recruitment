@@ -1,5 +1,4 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
-
 import com.ess.recruitment.core.dto.jobs.JobsDTO;
 import com.ess.recruitment.core.req.RecruitmentRequest;
 import com.ess.recruitment.core.resp.ApiResponse;
@@ -54,11 +53,12 @@ public class JobServiceImpl implements JobService {
                         return "JOB-" + String.format("%03d", nextCodeNumber);
                     })
                     .orElse("JOB-001");
-           JobsEntity jobsEntity = mapperConfig.toEntityJob(recruitmentRequest.getJobsDTO());
+            JobsEntity jobsEntity = mapperConfig.toEntityJob(recruitmentRequest.getJobsDTO());
             jobsEntity.setJobCode(jobCode);
             JobsEntity savedEntity = jobRepository.save(jobsEntity);
-            return new ApiResponse(true, "Job created successfully",
-                    mapperConfig.toDtoJob(savedEntity), null);
+          //  return new ApiResponse(true, "Job created successfully",
+           //         mapperConfig.toDtoJob(savedEntity), null);
+            return null;
         } catch (Exception e) {
             throw new IllegalArgumentException("Failed to create job: " + e.getMessage());
         }
@@ -68,9 +68,11 @@ public class JobServiceImpl implements JobService {
     @Override
     @Transactional
     public ApiResponse getJobById(Long id) {
-        return jobRepository.findById(id)
-                .map(entity -> new ApiResponse(true, "Job found", mapperConfig.toDtoJob(entity), null))
-                .orElseThrow(() -> new EntityNotFoundException("Job with ID " + id + " not found"));
+//        return jobRepository.findById(id)
+//                .map(entity -> new ApiResponse(true, "Job found", mapperConfig.toDtoJob(entity), null))
+//                .orElseThrow(() -> new EntityNotFoundException("Job with ID " + id + " not found"));
+
+        return null;
     }
 
     // Get All Jobs With Counts
@@ -94,6 +96,7 @@ public class JobServiceImpl implements JobService {
         RecruitmentCountResponse response = new RecruitmentCountResponse(
                 totalCount,activeCount,inactiveCount,openCount,yetToStartCount,onGoingCount,completeCount);
 
+       // return new ApiResponse(true, "Getting all jobs", response, null);
         return new ApiResponse(true, "Getting all jobs", response, null);
 
     }

@@ -18,12 +18,18 @@ public interface TemplateRepository extends JpaRepository<TemplateEntity,Long> {
     @Query("SELECT MAX(t.templateCode) FROM #{#entityName} t")
     Optional<String> findLatestCode();
 Long countByStatus(int status);
+
+
+    Page<TemplateEntity> findByStatus(int status,Pageable pageable);
+
+
     @Query("SELECT t FROM TemplateEntity t " +
-            "WHERE " +
+            "WHERE (:searchKeyword IS NULL OR " +
             "LOWER(t.title) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
-            "OR LOWER(t.primarySkills) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
-            "OR LOWER(t.secondarySkills) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
-            "OR LOWER(t.city) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " )
+            "OR LOWER(t.templateCode) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
+            "OR LOWER(t.city) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
+            "OR LOWER(t.languagesRequired) LIKE LOWER(CONCAT('%', :searchKeyword, '%')) " +
+            "OR LOWER(t.jobDescription) LIKE LOWER(CONCAT('%', :searchKeyword, '%'))) ")
     Page<TemplateEntity> searchTemplatesByKeyword(String searchKeyword, Pageable pageable);
 
 
