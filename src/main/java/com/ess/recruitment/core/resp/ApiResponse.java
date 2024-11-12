@@ -14,11 +14,16 @@ public class ApiResponse {
     private long count;
     private HttpStatus status;
 
-    public ApiResponse(boolean success, String message, long count, Object data) {
+    public ApiResponse(boolean success, String message, Object data) {
         this.success = success;
         this.message = message;
-        this.count = count;
         this.data = data;
+    }
+    public ApiResponse(boolean success, String message, Object data,PaginationResponse paginationResponse) {
+        this.success = success;
+        this.message = message;
+        this.data = data;
+        this.paginationResponse = paginationResponse;
     }
 
     public ApiResponse(boolean success, String message, Object data, PaginationResponse paginationResponse, long count) {
