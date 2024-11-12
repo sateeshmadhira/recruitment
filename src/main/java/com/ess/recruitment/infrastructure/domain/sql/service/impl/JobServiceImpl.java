@@ -93,7 +93,8 @@ public class JobServiceImpl implements JobService {
         RecruitmentCountResponse response = new RecruitmentCountResponse(
                 totalCount,activeCount,inactiveCount,openCount,yetToStartCount,onGoingCount,completeCount);
 
-        return new ApiResponse(true, "Getting all jobs", response, null);
+       // return new ApiResponse(true, "Getting all jobs", response, null);
+        return null;
 
     }
 
