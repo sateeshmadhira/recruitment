@@ -1,19 +1,23 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
 
 import com.ess.recruitment.core.dto.CandidateSubmissionDto;
+import com.ess.recruitment.core.req.RecruitmentRequest;
+import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.infrastructure.domain.sql.model.CandidateSubmissionEntity;
-
-import java.util.List;
 
 public interface CandidateService {
 
-    CandidateSubmissionDto createCandidate(CandidateSubmissionDto candidateDto);
+    ApiResponse createCandidate(RecruitmentRequest recruitmentRequest);
 
-    List<CandidateSubmissionDto> getAll();
+    ApiResponse getCandidateById(Long id);
 
-    CandidateSubmissionDto getById(Long id);
+    ApiResponse getAllCandidatesWithCounts();
 
-    CandidateSubmissionDto updateCandidate(Long id, CandidateSubmissionDto candidateSubmissionDto);
+    ApiResponse updateCandidateStatus(Long id, RecruitmentRequest recruitmentRequest);
 
+    ApiResponse softDeleteCandidate(Long candidateId);
 
+    ApiResponse getAllCandidates(int page, int pageSize);
+
+    ApiResponse globalSearch(String searchKey, int page, int pageSize);
 }

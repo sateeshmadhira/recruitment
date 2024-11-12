@@ -1,5 +1,8 @@
 package com.ess.recruitment.core.dto;
 
+import com.ess.recruitment.core.utils.Country;
+import com.ess.recruitment.core.utils.PayType;
+import com.ess.recruitment.core.utils.State;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +14,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class CandidateSubmissionDto {
     private Long id;
+    private String candidateCode;
     private String jobId;
+    private int delFlag =1;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -20,7 +25,7 @@ public class CandidateSubmissionDto {
     private String address;
     private String city;
     private String zip;
-    private String state;
+    private State state;
     private String currentLocation;
     private String totalExperience;
     private String relevantExperience;
@@ -28,7 +33,7 @@ public class CandidateSubmissionDto {
     private String currentOrganization;
     private String expectedCtc;
     private String rate;
-    private String ctcType; // Hourly/Monthly/Yearly
+    private PayType ctcType; // Hourly/Monthly/Yearly
     private String linkedInUrl;
     private String alternateContactNumber;
     private String workAuthorization;
@@ -39,8 +44,8 @@ public class CandidateSubmissionDto {
     private String degree;
     private String university;
     private Date yearOfPassed;
-    private String country;
+    private Country country;
     private Boolean consent;
     private String resumeFile; // URL or identifier for the resume file
-    private String idProofFile; // URL or identifier for the ID proof
+    private String idProofFile;// URL or identifier for the ID proof
 }

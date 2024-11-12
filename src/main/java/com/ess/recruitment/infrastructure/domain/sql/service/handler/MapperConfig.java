@@ -14,7 +14,9 @@ public interface MapperConfig {
      TemplateDTO toDtoTemplate(TemplateEntity templateEntity);
 
      JobsDTO toDtoJob(JobsEntity jobsEntity);
+
     CandidateSubmissionDto toCandidateDTO(CandidateSubmissionEntity entity);
+
     CandidateSubmissionEntity toCandidateEntity(CandidateSubmissionDto dto);
 
      JobsEntity toEntityJob(JobsDTO jobsDTO);

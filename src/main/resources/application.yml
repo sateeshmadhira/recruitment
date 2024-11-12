@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/Candidate
+    url: jdbc:postgresql://localhost:5432/ess_crm?currentSchema=candidate
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver

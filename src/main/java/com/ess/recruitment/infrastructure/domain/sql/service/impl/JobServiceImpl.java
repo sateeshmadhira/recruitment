@@ -94,7 +94,7 @@ public class JobServiceImpl implements JobService {
         long totalCount = jobRepository.count();
 
         RecruitmentCountResponse response = new RecruitmentCountResponse(
-                totalCount,activeCount,inactiveCount,openCount,yetToStartCount,onGoingCount,completeCount);
+                totalCount,openCount,completeCount,openCount,yetToStartCount,onGoingCount,inactiveCount);
 
         return new ApiResponse(true, "Getting all jobs", response, null);
     }
@@ -118,6 +118,7 @@ public class JobServiceImpl implements JobService {
                 existingJob.setStatus(jobDTO.getStatus());
                 existingJob.setDelFlag(jobDTO.getStatus().equals(Status.COMPLETE) ? 0 : 1);
             }
+
             JobsEntity updatedEntity = jobRepository.save(existingJob);
             return new ApiResponse(true, "Job updated successfully",
                     mapperConfig.toDtoJob(updatedEntity), null);
