@@ -2,7 +2,6 @@ package com.ess.recruitment.infrastructure.domain.sql.repository;
 
 import com.ess.recruitment.core.utils.Status;
 import com.ess.recruitment.infrastructure.domain.sql.model.ResourcePoolEntity;
-import jakarta.persistence.Table;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

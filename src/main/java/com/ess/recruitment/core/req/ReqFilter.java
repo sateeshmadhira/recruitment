@@ -13,6 +13,5 @@ public class ReqFilter {
     private String sortBy;
     private Sort.Direction direction;
     private boolean loginUser;
-
     private  String searchKeyword;
 }
