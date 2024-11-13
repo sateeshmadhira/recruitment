@@ -1,6 +1,7 @@
 package com.ess.recruitment.core.resp;
 
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
 @Data
 public class ApiResponse {
@@ -9,13 +10,20 @@ public class ApiResponse {
     private String message;
     private Object data;
     private PaginationResponse paginationResponse;
+    private TemplatePageResponse templatePageResponse;
     private long count;
+    private HttpStatus status;
 
-    public ApiResponse(boolean success, String message, long count, Object data) {
+    public ApiResponse(boolean success, String message, Object data) {
         this.success = success;
         this.message = message;
-        this.count = count;
         this.data = data;
+    }
+    public ApiResponse(boolean success, String message, Object data,PaginationResponse paginationResponse) {
+        this.success = success;
+        this.message = message;
+        this.data = data;
+        this.paginationResponse = paginationResponse;
     }
 
     public ApiResponse(boolean success, String message, Object data, PaginationResponse paginationResponse, long count) {
@@ -25,15 +33,15 @@ public class ApiResponse {
         this.paginationResponse = paginationResponse;
         this.count = count;
     }
-
     public ApiResponse() {
     }
 
-    public ApiResponse(boolean success, String message, Object data, PaginationResponse paginationResponse) {
-        this.success = success;
+    public ApiResponse( String message,TemplatePageResponse templatePageResponse,HttpStatus status) {
+
         this.message = message;
-        this.data = data;
-        this.paginationResponse = paginationResponse;
+        this.templatePageResponse = templatePageResponse;
+        this.status = status;
+
     }
 }
 

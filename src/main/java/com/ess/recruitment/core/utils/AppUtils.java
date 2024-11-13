@@ -1,6 +1,5 @@
 package com.ess.recruitment.core.utils;
 
-import com.ess.recruitment.core.constants.TemplateConstants;
 import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.core.resp.TemplatePageResponse;
 
@@ -38,12 +37,12 @@ public  static <T> TemplatePageResponse <T> templaytePageResponseMethod(Page<T> 
 
 
 public static ApiResponse apiResponseSuccess(String message, TemplatePageResponse data, HttpStatus status) {
-    ApiResponse apiResponse = new ApiResponse(true, message, status.value(), data);
+    ApiResponse apiResponse = new ApiResponse( message,data, status );
     return apiResponse;
 }
 
 public static ApiResponse apiResponseError(String message, TemplatePageResponse data, HttpStatus status) {
-    ApiResponse apiResponse = new ApiResponse(false, message ,status.value(),data);
+    ApiResponse apiResponse = new ApiResponse( message ,data,status);
     return apiResponse;
 }
 

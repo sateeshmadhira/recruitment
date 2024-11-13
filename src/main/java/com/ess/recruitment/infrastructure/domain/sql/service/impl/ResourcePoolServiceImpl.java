@@ -60,7 +60,7 @@ public class ResourcePoolServiceImpl implements ResourcePoolService {
 
             ResourcePoolEntity savedEntity = resourcePoolRepository.save(resourcePoolEntity);
             return new ApiResponse(true, "Resource created successfully",
-                    mapperConfig.toDtoResource(savedEntity), null);
+                    mapperConfig.toDtoResource(savedEntity));
         } catch (Exception e) {
             throw new IllegalArgumentException("Failed to create Resource: " + e.getMessage(), e);
         }
@@ -70,7 +70,7 @@ public class ResourcePoolServiceImpl implements ResourcePoolService {
     @Transactional
     public ApiResponse getResourceById(Long id) {
         return resourcePoolRepository.findById(id)
-                .map(entity -> new ApiResponse(true, "Resource found", mapperConfig.toDtoResource(entity), null))
+                .map(entity -> new ApiResponse(true, "Resource found", mapperConfig.toDtoResource(entity)))
                 .orElseThrow(() -> new EntityNotFoundException("Resource with ID " + id + " not found"));
     }
 
@@ -94,7 +94,7 @@ public class ResourcePoolServiceImpl implements ResourcePoolService {
         RecruitmentCountResponse response = new RecruitmentCountResponse(
                 totalCount,activeCount,inactiveCount,openCount,yetToStartCount,onGoingCount,completeCount);
 
-        return new ApiResponse(true, "Getting all resources", response, null);
+        return new ApiResponse(true, "Getting all resources", response);
     }
 
     @Override
@@ -116,7 +116,7 @@ public class ResourcePoolServiceImpl implements ResourcePoolService {
             }
             ResourcePoolEntity updatedEntity = resourcePoolRepository.save(existingResource);
             return new ApiResponse(true, "Resource updated successfully",
-                    mapperConfig.toDtoResource(updatedEntity), null);
+                    mapperConfig.toDtoResource(updatedEntity));
         } else {
             throw new EntityNotFoundException("Resource with ID " + id + " not found");
         }
@@ -129,7 +129,7 @@ public class ResourcePoolServiceImpl implements ResourcePoolService {
             throw new EntityNotFoundException("Resource not found with ID: " + resourceId);
         }
         resourcePoolRepository.softDeleteResource(resourceId,Status.COMPLETE);
-        return new ApiResponse(true,"soft delete success",null,null);
+        return new ApiResponse(true,"soft delete success",null);
 
     }
 
@@ -145,7 +145,7 @@ public class ResourcePoolServiceImpl implements ResourcePoolService {
                 resourcePage.getSize(),
                 resources
         );
-        return new ApiResponse(true, "resources retrieved successfully", null, paginationResponse);
+        return new ApiResponse(true, "resources retrieved successfully", paginationResponse);
     }
 
     @Override
@@ -165,8 +165,8 @@ public class ResourcePoolServiceImpl implements ResourcePoolService {
                 resourcePoolDtos
         );
         if (resourcePoolDtos.isEmpty()) {
-            return new ApiResponse(false, "No resources found matching the criteria", null, paginationResponse);
+            return new ApiResponse(false, "No resources found matching the criteria", paginationResponse);
         }
-        return new ApiResponse(true, "resources found", null, paginationResponse);
+        return new ApiResponse(true, "resources found", paginationResponse);
     }
 }

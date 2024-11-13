@@ -8,7 +8,6 @@ import com.ess.recruitment.core.utils.Status;
 import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
 import com.ess.recruitment.infrastructure.domain.sql.repository.JobRepository;
 import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
-
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -55,11 +53,11 @@ public class JobServiceImpl implements JobService {
                         return "JOB-" + String.format("%03d", nextCodeNumber);
                     })
                     .orElse("JOB-001");
-            JobsEntity jobsEntity = mapperConfig.toEntityJob(recruitmentRequest.getJobsDTO());
+           JobsEntity jobsEntity = mapperConfig.toEntityJob(recruitmentRequest.getJobsDTO());
             jobsEntity.setJobCode(jobCode);
             JobsEntity savedEntity = jobRepository.save(jobsEntity);
             return new ApiResponse(true, "Job created successfully",
-                    mapperConfig.toDtoJob(savedEntity), null);
+                    mapperConfig.toDtoJob(savedEntity));
         } catch (Exception e) {
             throw new IllegalArgumentException("Failed to create job: " + e.getMessage());
         }
@@ -70,7 +68,7 @@ public class JobServiceImpl implements JobService {
     @Transactional
     public ApiResponse getJobById(Long id) {
         return jobRepository.findById(id)
-                .map(entity -> new ApiResponse(true, "Job found", mapperConfig.toDtoJob(entity), null))
+                .map(entity -> new ApiResponse(true, "Job found", mapperConfig.toDtoJob(entity)))
                 .orElseThrow(() -> new EntityNotFoundException("Job with ID " + id + " not found"));
     }
 
@@ -95,7 +93,9 @@ public class JobServiceImpl implements JobService {
         RecruitmentCountResponse response = new RecruitmentCountResponse(
                 totalCount,activeCount,inactiveCount,openCount,yetToStartCount,onGoingCount,completeCount);
 
-        return new ApiResponse(true, "Getting all jobs", response, null);
+       // return new ApiResponse(true, "Getting all jobs", response, null);
+        return null;
+
     }
 
     // Update job status and set isActive accordingly
@@ -117,13 +117,81 @@ public class JobServiceImpl implements JobService {
                 existingJob.setStatus(jobDTO.getStatus());
                 existingJob.setDelFlag(jobDTO.getStatus().equals(Status.COMPLETE) ? 0 : 1);
             }
+            if (jobDTO.getTechnology() != null) {
+                existingJob.setTechnology(jobDTO.getTechnology());
+            }
+            if (jobDTO.getEmploymentType() != null) {
+                existingJob.setEmploymentType(jobDTO.getEmploymentType());
+            }
+            if (jobDTO.getPrimarySkills() != null) {
+                existingJob.setPrimarySkills(jobDTO.getPrimarySkills());
+            }
+            if (jobDTO.getSecondarySkills() != null) {
+                existingJob.setSecondarySkills(jobDTO.getSecondarySkills());
+            }
+            if (jobDTO.getJobDescription() != null) {
+                existingJob.setJobDescription(jobDTO.getJobDescription());
+            }
+            if (jobDTO.getRelevantExperience() > 0) {
+                existingJob.setRelevantExperience(jobDTO.getRelevantExperience());
+            }
+            if (jobDTO.getDomain() != null) {
+                existingJob.setDomain(jobDTO.getDomain());
+            }
+            if (jobDTO.getPayRate() != null) {
+                existingJob.setPayRate(jobDTO.getPayRate());
+            }
+            if (jobDTO.getTaAssignee() != null) {
+                existingJob.setTaAssignee(jobDTO.getTaAssignee());
+            }
+            if (jobDTO.getLocation() != null) {
+                existingJob.setLocation(jobDTO.getLocation());
+            }
+            if (jobDTO.getCreateDate() != null) {
+                existingJob.setCreateDate(jobDTO.getCreateDate());
+            }
+            if (jobDTO.getNoOfSubmission() > 0) {
+                existingJob.setNoOfSubmission(jobDTO.getNoOfSubmission());
+            }
+            if (jobDTO.getVendor() != null) {
+                existingJob.setVendor(jobDTO.getVendor());
+            }
+            if (jobDTO.getWorkExperience() > 0) {
+                existingJob.setWorkExperience(jobDTO.getWorkExperience());
+            }
+            if (jobDTO.getNoOfPositions() > 0) {
+                existingJob.setNoOfPositions(jobDTO.getNoOfPositions());
+            }
+            if (jobDTO.getTargetDate() != null) {
+                existingJob.setTargetDate(jobDTO.getTargetDate());
+            }
+            if (jobDTO.getWorkType() != null) {
+                existingJob.setWorkType(jobDTO.getWorkType());
+            }
+            if (jobDTO.getLanguagesRequired() != null) {
+                existingJob.setLanguagesRequired(jobDTO.getLanguagesRequired());
+            }
+            if (jobDTO.getPriority() != null) {
+                existingJob.setPriority(jobDTO.getPriority());
+            }
+            if (jobDTO.getProjectId() != null) {
+                existingJob.setProjectId(jobDTO.getProjectId());
+            }
+            if (jobDTO.getClientJobId() != null) {
+                existingJob.setClientJobId(jobDTO.getClientJobId());
+            }
+            if (jobDTO.getAccountManager() != null) {
+                existingJob.setAccountManager(jobDTO.getAccountManager());
+            }
+
             JobsEntity updatedEntity = jobRepository.save(existingJob);
             return new ApiResponse(true, "Job updated successfully",
-                    mapperConfig.toDtoJob(updatedEntity), null);
+                    mapperConfig.toDtoJob(updatedEntity));
         } else {
             throw new EntityNotFoundException("Job with ID " + id + " not found");
         }
     }
+
 
     // Soft Delete Job
     @Override
@@ -134,7 +202,7 @@ public class JobServiceImpl implements JobService {
             throw new EntityNotFoundException("Job not found with ID: " + jobId);
         }
         jobRepository.softDeleteJob(jobId);
-        return new ApiResponse(true, "Soft delete success", null, null);
+        return new ApiResponse(true, "Soft delete success", null);
     }
 
     // Get All Jobs with Pagination
@@ -154,7 +222,7 @@ public class JobServiceImpl implements JobService {
                 jobPage.getSize(),
                 jobs
         );
-        return new ApiResponse(true, "Jobs retrieved successfully", null, paginationResponse);
+        return new ApiResponse(true, "Jobs retrieved successfully", paginationResponse);
     }
 
     // Global Search for Jobs by jobCode
@@ -177,9 +245,9 @@ public class JobServiceImpl implements JobService {
         );
 
         if (jobDTOs.isEmpty()) {
-            return new ApiResponse(false, "No jobs found matching the criteria", null, paginationResponse);
+            return new ApiResponse(false, "No jobs found matching the criteria", paginationResponse);
         }
 
-        return new ApiResponse(true, "Jobs found", null, paginationResponse);
+        return new ApiResponse(true, "Jobs found", paginationResponse);
     }
 }
