@@ -1,14 +1,16 @@
 package com.ess.recruitment.infrastructure.controller;
+import com.ess.recruitment.core.constants.RecruitmentConstants;
 import com.ess.recruitment.core.req.RecruitmentRequest;
 import com.ess.recruitment.core.req.SearchReq;
 import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.infrastructure.domain.sql.service.impl.JobService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/jobs")
+@RequestMapping(RecruitmentConstants.RECRUITMENT_PATH_URL+"/jobs")
 @CrossOrigin("*")
 public class JobsController {
 
@@ -16,34 +18,34 @@ public class JobsController {
     private JobService jobService;
 
     @PostMapping
-    public ResponseEntity<ApiResponse> createJob(@RequestBody RecruitmentRequest recruitmentRequest) {
+    public ResponseEntity<ApiResponse> createJob(@Valid @RequestBody RecruitmentRequest recruitmentRequest) {
         ApiResponse response = jobService.createJob(recruitmentRequest);
         return ResponseEntity.ok(response);
     }
 
     // Get Job by ID
-    @GetMapping("/{id}")
+    @GetMapping(RecruitmentConstants.RECRUITMENT_BY_ID)
     public ResponseEntity<ApiResponse> getJobById(@PathVariable("id") Long id) {
         ApiResponse response = jobService.getJobById(id);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
     }
 
     // Get All Jobs with Counts
-    @GetMapping("/counts")
+    @GetMapping(RecruitmentConstants.RECRUITMENT_GET_COUNTS)
     public ResponseEntity<ApiResponse> getAllJobsWithCounts() {
         ApiResponse response = jobService.getAllJobsWithCounts();
         return ResponseEntity.ok(response);
     }
 
     // Update Job
-    @PutMapping("/{id}")
+    @PutMapping(RecruitmentConstants.RECRUITMENT_BY_ID)
     public ResponseEntity<ApiResponse> updateJob(@PathVariable("id") Long id, @RequestBody RecruitmentRequest recruitmentRequest) {
         ApiResponse response = jobService.updateJobStatus(id, recruitmentRequest);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
     }
 
     // Soft Delete Job by ID
-    @DeleteMapping("/{id}")
+    @DeleteMapping(RecruitmentConstants.RECRUITMENT_BY_ID)
     public ResponseEntity<ApiResponse> softDeleteJob(@PathVariable("id") Long jobId) {
         ApiResponse response = jobService.softDeleteJob(jobId);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
@@ -57,7 +59,7 @@ public class JobsController {
     }
 
     // Global Search by jobCode with Pagination
-    @PostMapping("/search")
+    @PostMapping(RecruitmentConstants.RECRUITMENT_GLOBAL_SEARCH)
     public ResponseEntity<ApiResponse> globalSearch(@RequestBody SearchReq searchReq) {
         ApiResponse response = jobService.globalSearch(
                 searchReq.getSearchKey(),

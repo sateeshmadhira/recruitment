@@ -1,4 +1,4 @@
-package com.ess.recruitment.infrastructure.domain.sql.model.template;
+package com.ess.recruitment.infrastructure.domain.sql.model;
 
 import com.ess.recruitment.core.utils.Country;
 import com.ess.recruitment.core.utils.Qualifications;
@@ -6,10 +6,10 @@ import com.ess.recruitment.core.utils.State;
 import com.ess.recruitment.core.utils.WorkType;
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 
 
 import java.io.Serializable;
@@ -27,7 +27,7 @@ public class TemplateEntity implements Serializable {
     @Column(name = "TEMPLATE_ID")
     private Long templateId;
 
-   // @NotNull(message = "Title is mandatory")
+    @NotNull(message = "Title is mandatory")
     @Column(name = "TITLE")
     private String title;
 

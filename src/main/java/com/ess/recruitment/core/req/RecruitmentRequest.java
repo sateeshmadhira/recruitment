@@ -5,7 +5,7 @@ import com.ess.recruitment.core.dto.CandidateSubmissionDto;
 
 import com.ess.recruitment.core.dto.ResourcePoolDto;
 import com.ess.recruitment.core.dto.InterviewDto;
-import com.ess.recruitment.core.dto.jobs.JobsDTO;
+import com.ess.recruitment.core.dto.JobsDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,4 +20,8 @@ public class RecruitmentRequest extends ReqFilter {
     private InterviewDto interviewDto=new InterviewDto();
     private ResourcePoolDto resourcePoolDto=new ResourcePoolDto();
     private CandidateSubmissionDto candidateSubmissionDto  = new CandidateSubmissionDto();
+
+    public RecruitmentRequest(JobsDTO jobsDTO){
+
+    }
 }

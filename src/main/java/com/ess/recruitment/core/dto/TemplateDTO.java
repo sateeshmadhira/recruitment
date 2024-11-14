@@ -1,4 +1,4 @@
-package com.ess.recruitment.core.dto.template;
+package com.ess.recruitment.core.dto;
 import com.ess.recruitment.core.utils.Country;
 import com.ess.recruitment.core.utils.Qualifications;
 import com.ess.recruitment.core.utils.WorkType;

@@ -40,12 +40,17 @@ dependencies {
 	implementation 'org.glassfish:jakarta.el:4.0.2'
 
     //swagger
-	implementation 'io.springfox:springfox-swagger2:3.0.0'
-	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
-	implementation 'io.springfox:springfox-boot-starter:3.0.0'
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
+	//implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
+	//implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 
 
-
+	//implementation 'io.springfox:springfox-swagger2:2.9.2'
+	//implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+	//implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+	//implementation 'org.springframework.plugin:spring-plugin-core:2.0.0.RELEASE'
+	//implementation platform('org.springframework.boot:spring-boot-dependencies:3.4.0-RC1')
 
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation("org.modelmapper:modelmapper:3.1.1")

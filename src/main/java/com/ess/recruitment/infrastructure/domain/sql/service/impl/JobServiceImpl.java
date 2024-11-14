@@ -1,11 +1,12 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
-import com.ess.recruitment.core.dto.jobs.JobsDTO;
+import com.ess.recruitment.core.dto.JobsDTO;
+import com.ess.recruitment.core.excepetion.GlobalExceptionHandler;
 import com.ess.recruitment.core.req.RecruitmentRequest;
 import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.core.resp.PaginationResponse;
 import com.ess.recruitment.core.resp.RecruitmentCountResponse;
 import com.ess.recruitment.core.utils.Status;
-import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
+import com.ess.recruitment.infrastructure.domain.sql.model.JobsEntity;
 import com.ess.recruitment.infrastructure.domain.sql.repository.JobRepository;
 import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
 import jakarta.persistence.EntityNotFoundException;
@@ -28,17 +29,8 @@ public class JobServiceImpl implements JobService {
     @Autowired
     private MapperConfig mapperConfig;
 
-    // Helper method to create Pagination Response
-    private <T> PaginationResponse<T> createPaginationResponse(Page<T> page) {
-        return new PaginationResponse<>(
-
-                page.getNumber(),
-                page.getTotalPages(),
-                page.getTotalElements(),
-                page.getSize(),
-                page.getContent()
-        );
-    }
+    @Autowired
+    GlobalExceptionHandler globalExceptionHandler;
 
     // Create Job
     @Override
@@ -53,7 +45,7 @@ public class JobServiceImpl implements JobService {
                         return "JOB-" + String.format("%03d", nextCodeNumber);
                     })
                     .orElse("JOB-001");
-           JobsEntity jobsEntity = mapperConfig.toEntityJob(recruitmentRequest.getJobsDTO());
+            JobsEntity jobsEntity = mapperConfig.toEntityJob(recruitmentRequest.getJobsDTO());
             jobsEntity.setJobCode(jobCode);
             JobsEntity savedEntity = jobRepository.save(jobsEntity);
             return new ApiResponse(true, "Job created successfully",
@@ -76,27 +68,32 @@ public class JobServiceImpl implements JobService {
     @Override
     @Transactional
     public ApiResponse getAllJobsWithCounts() {
+        // Fetch counts by delete flag for active and inactive jobs
         long activeCount = jobRepository.countByDelFlag(1);
         long inactiveCount = jobRepository.countByDelFlag(0);
 
+        // Fetch counts by job status
         long yetToStartCount = jobRepository.countByStatus(Status.YET_TO_START);
         long onGoingCount = jobRepository.countByStatus(Status.ONGOING);
         long openCount = jobRepository.countByStatus(Status.ACTIVE);
-//        long closedCount = jobRepository.countByStatus(Status.IN_ACTIVE);
         long completeCount = jobRepository.countByStatus(Status.COMPLETE);
 
-        activeCount=yetToStartCount+openCount+onGoingCount;
-        inactiveCount=completeCount;
+        // Calculate active count based on statuses if needed
+        long calculatedActiveCount = yetToStartCount + openCount + onGoingCount;
 
+        // Ensure consistency in active count by choosing the minimum of direct or calculated count
+        activeCount = Math.min(activeCount, calculatedActiveCount);
+
+        // Get total job count
         long totalCount = jobRepository.count();
 
+        // Create response object with counts
         RecruitmentCountResponse response = new RecruitmentCountResponse(
-                totalCount,activeCount,inactiveCount,openCount,yetToStartCount,onGoingCount,completeCount);
+                totalCount, activeCount, inactiveCount, openCount, yetToStartCount, onGoingCount, completeCount);
 
-       // return new ApiResponse(true, "Getting all jobs", response, null);
-        return null;
-
+        return new ApiResponse(true, "Getting all jobs", response, null);
     }
+
 
     // Update job status and set isActive accordingly
     @Override
