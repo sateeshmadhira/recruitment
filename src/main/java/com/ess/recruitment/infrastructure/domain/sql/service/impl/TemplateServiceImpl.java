@@ -1,6 +1,6 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
 
-import com.ess.recruitment.core.dto.template.TemplateDTO;
+import com.ess.recruitment.core.dto.TemplateDTO;
 import com.ess.recruitment.core.req.TemplateReq;
 
 import com.ess.recruitment.core.resp.ApiResponse;
@@ -8,7 +8,7 @@ import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.core.resp.TemplateCountResponse;
 import com.ess.recruitment.core.resp.TemplatePageResponse;
 import com.ess.recruitment.core.utils.AppUtils;
-import com.ess.recruitment.infrastructure.domain.sql.model.template.TemplateEntity;
+import com.ess.recruitment.infrastructure.domain.sql.model.TemplateEntity;
 import com.ess.recruitment.infrastructure.domain.sql.repository.TemplateRepository;
 import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
 

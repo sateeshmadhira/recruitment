@@ -2,7 +2,7 @@ package com.ess.recruitment.core.req;
 
 
 import com.ess.recruitment.core.dto.ResourcePoolDto;
-import com.ess.recruitment.core.dto.template.TemplateDTO;
+import com.ess.recruitment.core.dto.TemplateDTO;
 import lombok.Data;
 
 
