@@ -36,6 +36,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse> handleGlobalException(Exception ex) {
         ApiResponse response = new ApiResponse(false, "An error occurred: " + ex.getMessage(), null, null);

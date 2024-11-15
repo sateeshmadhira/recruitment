@@ -1,30 +1,25 @@
-//package com.ess.recruitment.infrastructure.security.config;
-//import com.google.common.base.Predicates;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-//import springfox.documentation.builders.RequestHandlerSelectors;
-//import springfox.documentation.spi.DocumentationType;
-//import springfox.documentation.spring.web.plugins.Docket;
-//import springfox.documentation.swagger2.annotations.EnableSwagger2;
-//
-//import java.util.function.Predicate;
-//
-//@Configuration
-//@EnableSwagger2
-//public class SwaggerConfig {
-//
-//@Bean
-//    public Docket docket() {
-//    return new Docket(DocumentationType.SWAGGER_2).select().apis(Predicates.not
-//            (RequestHandlerSelectors.basePackage("org.springframework.boot"))).build();
-//
-//}
-//public void addResourceHandler(ResourceHandlerRegistry registry){
-//    registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
-//    registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-//
-//}
-//
-//}
-//
+package com.ess.recruitment.infrastructure.security.config;
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class SwaggerConfig {
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Recruitment API")
+                        .version("1.0.0")
+                        .description("API documentation for the Recruitment Service")
+                        .contact(new Contact()
+                                .name("Your Name")
+                                .email("your.email@example.com")
+                                .url("https://yourwebsite.com"))
+                );
+    }
+}

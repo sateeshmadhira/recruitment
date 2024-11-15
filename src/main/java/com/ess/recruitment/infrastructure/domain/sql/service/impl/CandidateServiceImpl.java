@@ -44,6 +44,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
+    @Transactional
     public ApiResponse createCandidate(RecruitmentRequest recruitmentRequest) {
         try {
             Optional<CandidateSubmissionEntity> latestCandidate = candidateRepository.findTopByOrderByCandidateCodeDesc();
@@ -75,6 +76,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
+    @Transactional
     public ApiResponse getAllCandidatesWithCounts() {
         long activeCount = candidateRepository.countByDelFlag(1);
         long inactiveCount = candidateRepository.countByDelFlag(0);
@@ -97,6 +99,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
+    @Transactional
     public ApiResponse updateCandidateStatus(Long id, RecruitmentRequest recruitmentRequest) {
         Optional<CandidateSubmissionEntity> optionalCand = candidateRepository.findById(id);
         if (optionalCand.isPresent()) {
@@ -213,6 +216,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
+    @Transactional
     public ApiResponse softDeleteCandidate(Long candidateId) {
         Optional<CandidateSubmissionEntity> candidateSubmissionEntityOptional = candidateRepository.findById(candidateId);
         if (candidateSubmissionEntityOptional.isEmpty()) {
@@ -242,6 +246,7 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
+    @Transactional
     public ApiResponse globalSearch(String searchKey, int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
         Page<CandidateSubmissionEntity> candidateSubmissionEntities = candidateRepository.globalSearch(searchKey, pageable);
