@@ -11,10 +11,7 @@ import java.util.Optional;
 
 
 public class AppUtils<T> {
-
-
-
-public  static <T> TemplatePageResponse <T> templaytePageResponseMethod(Page<T> pageEntity){
+public  static <T> TemplatePageResponse <T> templatePageResponseMethod(Page<T> pageEntity){
     PageImpl<T> page = (PageImpl<T>) pageEntity ;
     TemplatePageResponse projectPageResponse=new TemplatePageResponse();
         projectPageResponse.setTotalPages(page.getTotalPages());
@@ -37,13 +34,12 @@ public  static <T> TemplatePageResponse <T> templaytePageResponseMethod(Page<T> 
 
 
 public static ApiResponse apiResponseSuccess(String message, TemplatePageResponse data, HttpStatus status) {
-    ApiResponse apiResponse = new ApiResponse( message,data, status );
+    ApiResponse apiResponse = new ApiResponse(message,data,status);
     return apiResponse;
 }
 
 public static ApiResponse apiResponseError(String message, TemplatePageResponse data, HttpStatus status) {
-    ApiResponse apiResponse = new ApiResponse( message ,data,status);
+    ApiResponse apiResponse = new ApiResponse(message,data,status);
     return apiResponse;
 }
-
 }

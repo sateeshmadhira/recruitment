@@ -1,6 +1,8 @@
 package com.ess.recruitment.core.dto;
 
 import com.ess.recruitment.core.utils.*;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

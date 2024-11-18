@@ -1,4 +1,4 @@
-package com.ess.recruitment.infrastructure.domain.sql.model.template;
+package com.ess.recruitment.infrastructure.domain.sql.model;
 
 import com.ess.recruitment.core.utils.Country;
 import com.ess.recruitment.core.utils.Qualifications;
@@ -9,7 +9,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 
 
 import java.io.Serializable;

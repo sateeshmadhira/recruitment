@@ -1,14 +1,12 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
 
 import com.ess.recruitment.core.dto.InterviewDto;
-import com.ess.recruitment.core.dto.jobs.JobsDTO;
 import com.ess.recruitment.core.req.RecruitmentRequest;
 import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.core.resp.PaginationResponse;
 import com.ess.recruitment.core.resp.RecruitmentCountResponse;
 import com.ess.recruitment.core.utils.Status;
 import com.ess.recruitment.infrastructure.domain.sql.model.InterviewEntity;
-import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
 import com.ess.recruitment.infrastructure.domain.sql.repository.InterviewRepository;
 import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
 import jakarta.persistence.EntityNotFoundException;
@@ -59,8 +57,7 @@ public class InterviewServiceImpl implements InterviewService {
 
             InterviewEntity savedEntity = interviewRepository.save(interviewEntity);
 
-            return new ApiResponse(true, "Interview created successfully",
-                    mapperConfig.toInterviewDto(savedEntity), null);
+            return new ApiResponse(true,"Interview created successfully",savedEntity,null);
 
         } catch (Exception e) {
             throw new IllegalArgumentException("Failed to create interview: " + e.getMessage());
@@ -72,8 +69,8 @@ public class InterviewServiceImpl implements InterviewService {
     @Transactional
     public ApiResponse getInterviewById(Long id) {
         return interviewRepository.findById(id)
-                .map(entity -> new ApiResponse(true, "interview found", mapperConfig.toInterviewDto(entity), null))
-                .orElseThrow(() -> new EntityNotFoundException("Job with ID " + id + " not found"));
+                .map(entity -> new ApiResponse(true,"interview found",mapperConfig.toInterviewDto(entity)))
+                .orElseThrow(() -> new EntityNotFoundException("interview with ID " + id + " not found"));
     }
 
     @Override
@@ -102,7 +99,7 @@ public class InterviewServiceImpl implements InterviewService {
         RecruitmentCountResponse response = new RecruitmentCountResponse(
                 totalCount,totalActive,inactiveCount,activeCount,yetToStartCount,onGoingCount,completeCount);
 
-        return new ApiResponse(true, "Getting all interviews", response, null);
+        return new ApiResponse(true,"getting all interviews",response,null);
 
     }
     @Override
@@ -155,8 +152,7 @@ public class InterviewServiceImpl implements InterviewService {
 
             InterviewEntity updatedEntity = interviewRepository.save(existingInterview);
 
-            return new ApiResponse(true, "Interview updated successfully",
-                    mapperConfig.toInterviewDto(updatedEntity), null);
+            return new ApiResponse(true,"Interview updated successfully",mapperConfig.toInterviewDto(updatedEntity),null);
         } else {
             throw new EntityNotFoundException("Interview with ID " + id + " not found");
         }
@@ -173,7 +169,7 @@ public class InterviewServiceImpl implements InterviewService {
             interviewRepository.save(interviewEntity);
             InterviewDto interviewDto = mapperConfig.toInterviewDto(interviewEntity);
 
-            return new ApiResponse(true, "Soft delete successful", interviewDto, null);
+            return new ApiResponse(true,"delete successfully",interviewDto,null);
         }
 
 
@@ -194,7 +190,7 @@ public class InterviewServiceImpl implements InterviewService {
                     interviewPage.getSize(),
                     interviews
             );
-            return new ApiResponse(true, "Jobs retrieved successfully", null, paginationResponse);
+            return new ApiResponse(true,"jobs retrieved successfully",null,paginationResponse);
         }
 
         // Global Search for Jobs by jobCode
@@ -217,10 +213,10 @@ public class InterviewServiceImpl implements InterviewService {
             );
 
             if (interviewsDtos.isEmpty()) {
-                return new ApiResponse(false, "No interviews found matching the criteria", null, paginationResponse);
+                return new ApiResponse(false," no interviews found matching criteria",null,paginationResponse);
             }
 
-            return new ApiResponse(true, "interviews found", null, paginationResponse);
+            return new ApiResponse(true,"interviews found",null,paginationResponse);
         }
     }
 

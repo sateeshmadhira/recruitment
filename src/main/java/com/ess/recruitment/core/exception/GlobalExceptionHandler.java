@@ -1,4 +1,4 @@
-package com.ess.recruitment.core.excepetion;
+package com.ess.recruitment.core.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,3 +24,4 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 }
+

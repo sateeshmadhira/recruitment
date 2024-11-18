@@ -2,7 +2,7 @@ package com.ess.recruitment.infrastructure.domain.sql.repository;
 
 import com.ess.recruitment.core.utils.Status;
 
-import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
+import com.ess.recruitment.infrastructure.domain.sql.model.JobsEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

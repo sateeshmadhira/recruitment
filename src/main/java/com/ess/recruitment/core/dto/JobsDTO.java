@@ -1,4 +1,4 @@
-package com.ess.recruitment.core.dto.jobs;
+package com.ess.recruitment.core.dto;
 import com.ess.recruitment.core.utils.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

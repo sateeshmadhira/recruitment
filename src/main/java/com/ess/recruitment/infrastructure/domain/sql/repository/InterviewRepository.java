@@ -23,14 +23,9 @@ public interface InterviewRepository extends JpaRepository<InterviewEntity,Long>
 
     @Modifying
     @Query("UPDATE InterviewEntity i SET i.delFlag = 0, i.status = :status WHERE i.interviewId = :interviewId")
-    void softDeleteJob(@Param("interviewId") Long interviewId);
-
-
+    void softDeleteInterview(@Param("interviewId") Long interviewId);
 
 
     @Query("SELECT i FROM InterviewEntity i WHERE :searchKey IS NULL OR LOWER(i.interviewCode) LIKE LOWER(CONCAT('%', :searchKey, '%'))")
     Page<InterviewEntity> globalSearch(@Param("searchKey") String searchKey, Pageable pageable);
-
-
-
 }

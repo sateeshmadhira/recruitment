@@ -1,11 +1,11 @@
 package com.ess.recruitment.infrastructure.domain.sql.service.impl;
-import com.ess.recruitment.core.dto.jobs.JobsDTO;
+import com.ess.recruitment.core.dto.JobsDTO;
 import com.ess.recruitment.core.req.RecruitmentRequest;
 import com.ess.recruitment.core.resp.ApiResponse;
 import com.ess.recruitment.core.resp.PaginationResponse;
 import com.ess.recruitment.core.resp.RecruitmentCountResponse;
 import com.ess.recruitment.core.utils.Status;
-import com.ess.recruitment.infrastructure.domain.sql.model.jobs.JobsEntity;
+import com.ess.recruitment.infrastructure.domain.sql.model.JobsEntity;
 import com.ess.recruitment.infrastructure.domain.sql.repository.JobRepository;
 import com.ess.recruitment.infrastructure.domain.sql.service.handler.MapperConfig;
 import jakarta.persistence.EntityNotFoundException;
@@ -56,8 +56,7 @@ public class JobServiceImpl implements JobService {
            JobsEntity jobsEntity = mapperConfig.toEntityJob(recruitmentRequest.getJobsDTO());
             jobsEntity.setJobCode(jobCode);
             JobsEntity savedEntity = jobRepository.save(jobsEntity);
-            return new ApiResponse(true, "Job created successfully",
-                    mapperConfig.toDtoJob(savedEntity));
+            return new ApiResponse(true,"job created successfully",savedEntity,null);
         } catch (Exception e) {
             throw new IllegalArgumentException("Failed to create job: " + e.getMessage());
         }
@@ -68,7 +67,7 @@ public class JobServiceImpl implements JobService {
     @Transactional
     public ApiResponse getJobById(Long id) {
         return jobRepository.findById(id)
-                .map(entity -> new ApiResponse(true, "Job found", mapperConfig.toDtoJob(entity)))
+                .map(entity -> new ApiResponse(true,"jobs found",mapperConfig.toDtoJob(entity)))
                 .orElseThrow(() -> new EntityNotFoundException("Job with ID " + id + " not found"));
     }
 
@@ -184,9 +183,8 @@ public class JobServiceImpl implements JobService {
                 existingJob.setAccountManager(jobDTO.getAccountManager());
             }
 
-            JobsEntity updatedEntity = jobRepository.save(existingJob);
-            return new ApiResponse(true, "Job updated successfully",
-                    mapperConfig.toDtoJob(updatedEntity));
+            JobsEntity savedJob = jobRepository.save(existingJob);
+            return new ApiResponse(true,"getting all jobs",savedJob,null);
         } else {
             throw new EntityNotFoundException("Job with ID " + id + " not found");
         }
@@ -202,7 +200,7 @@ public class JobServiceImpl implements JobService {
             throw new EntityNotFoundException("Job not found with ID: " + jobId);
         }
         jobRepository.softDeleteJob(jobId);
-        return new ApiResponse(true, "Soft delete success", null);
+        return new ApiResponse(true,"softdeletesuccess",null);
     }
 
     // Get All Jobs with Pagination
@@ -222,7 +220,7 @@ public class JobServiceImpl implements JobService {
                 jobPage.getSize(),
                 jobs
         );
-        return new ApiResponse(true, "Jobs retrieved successfully", paginationResponse);
+        return new ApiResponse(true,"jobs retrieved success",paginationResponse);
     }
 
     // Global Search for Jobs by jobCode

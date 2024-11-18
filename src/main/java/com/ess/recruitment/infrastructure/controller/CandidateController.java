@@ -25,25 +25,25 @@ public class CandidateController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse> getJobById(@PathVariable("id") Long id) {
+    public ResponseEntity<ApiResponse> getCandidateById(@PathVariable("id") Long id) {
         ApiResponse response = candidateService.getCandidateById(id);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
     }
 
     @GetMapping("/counts")
-    public ResponseEntity<ApiResponse> getAllJobsWithCounts() {
+    public ResponseEntity<ApiResponse> getAllCandidatesWithCounts() {
         ApiResponse response = candidateService.getAllCandidatesWithCounts();
         return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> updateJob(@PathVariable("id") Long id, @RequestBody RecruitmentRequest recruitmentRequest) {
+    public ResponseEntity<ApiResponse> updateCandidate(@PathVariable("id") Long id, @RequestBody RecruitmentRequest recruitmentRequest) {
         ApiResponse response = candidateService.updateCandidateStatus(id, recruitmentRequest);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse> softDeleteJob(@PathVariable("id") Long jobId) {
+    public ResponseEntity<ApiResponse> softDeleteCandidate(@PathVariable("id") Long jobId) {
         ApiResponse response = candidateService.softDeleteCandidate(jobId);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
     }

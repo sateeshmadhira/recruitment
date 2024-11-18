@@ -9,7 +9,7 @@ import com.ess.recruitment.core.resp.ApiResponse;
 public interface TemplateService {
     public ApiResponse createTemplate(TemplateReq templateReq);
 
-    public ApiResponse getTemplatetById(Long id);
+    public ApiResponse getTemplateById(Long id);
 
     public ApiResponse getAllTemplates(TemplateReq templateReq);
 

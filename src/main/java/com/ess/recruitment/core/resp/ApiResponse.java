@@ -19,23 +19,18 @@ public class ApiResponse {
         this.message = message;
         this.data = data;
     }
-    public ApiResponse(boolean success, String message, Object data,PaginationResponse paginationResponse) {
+    public ApiResponse(boolean success, String message,PaginationResponse paginationResponse) {
+        this.success = success;
+        this.message = message;
+        this.paginationResponse = paginationResponse;
+    }
+
+    public ApiResponse(boolean success, String message, Object data, PaginationResponse paginationResponse) {
         this.success = success;
         this.message = message;
         this.data = data;
         this.paginationResponse = paginationResponse;
     }
-
-    public ApiResponse(boolean success, String message, Object data, PaginationResponse paginationResponse, long count) {
-        this.success = success;
-        this.message = message;
-        this.data = data;
-        this.paginationResponse = paginationResponse;
-        this.count = count;
-    }
-    public ApiResponse() {
-    }
-
     public ApiResponse( String message,TemplatePageResponse templatePageResponse,HttpStatus status) {
 
         this.message = message;
@@ -44,4 +39,3 @@ public class ApiResponse {
 
     }
 }
-

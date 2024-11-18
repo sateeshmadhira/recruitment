@@ -22,12 +22,12 @@ public class TemplateController {
 
     @GetMapping("getTemplate/{id}")
     public ResponseEntity<ApiResponse> getTemplate(@PathVariable("id") Long id ){
-        ApiResponse  apiResponse = templateService.getTemplatetById(id);
+        ApiResponse  apiResponse = templateService.getTemplateById(id);
         return ResponseEntity.ok(apiResponse);
     }
 
     @PostMapping("getAllTemplate")
-    public ResponseEntity<ApiResponse> getALLTemplate(@RequestBody TemplateReq templateReq){
+    public ResponseEntity<ApiResponse> getAllTemplate(@RequestBody TemplateReq templateReq){
         ApiResponse apiResponse= templateService.getAllTemplates( templateReq);
         return ResponseEntity.ok(apiResponse);
     }

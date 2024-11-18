@@ -22,19 +22,19 @@ public class InterviewController {
 
     }
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse> getJobById(@PathVariable("id") Long id) {
+    public ResponseEntity<ApiResponse> getInterviewById(@PathVariable("id") Long id) {
         ApiResponse response = interviewService.getInterviewById(id);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
     }
 
     // Get All Jobs with Counts
     @GetMapping("/counts")
-    public ResponseEntity<ApiResponse> getAllJobsWithCounts() {
+    public ResponseEntity<ApiResponse> getAllInterviewWithCounts() {
         ApiResponse response = interviewService.getAllInterviewWithCounts();
         return ResponseEntity.ok(response);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> updateJob(@PathVariable("id") Long id, @RequestBody RecruitmentRequest recruitmentRequest) {
+    public ResponseEntity<ApiResponse> updateInterview(@PathVariable("id") Long id, @RequestBody RecruitmentRequest recruitmentRequest) {
         ApiResponse response = interviewService.updateInterviewStatus(id, recruitmentRequest);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
     }
@@ -48,7 +48,7 @@ public class InterviewController {
 
     // Get All Jobs with Pagination
     @GetMapping
-    public ResponseEntity<ApiResponse> getAllJobs(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int pageSize) {
+    public ResponseEntity<ApiResponse> getAllInterview(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int pageSize) {
         ApiResponse response = interviewService.getAllJobs(page, pageSize);
         return ResponseEntity.ok(response);
     }

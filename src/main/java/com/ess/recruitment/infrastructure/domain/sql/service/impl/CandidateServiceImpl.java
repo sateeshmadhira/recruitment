@@ -58,20 +58,18 @@ public class CandidateServiceImpl implements CandidateService {
                     mapperConfig.toCandidateEntity(recruitmentRequest.getCandidateSubmissionDto());
             candidateSubmissionEntity.setCandidateCode(candidateCode);
             CandidateSubmissionEntity savedEntity = candidateRepository.save(candidateSubmissionEntity);
-            return new ApiResponse(true, "Job created successfully",
-                    mapperConfig.toCandidateDTO(savedEntity), null);
+            return new ApiResponse(true,"Candidate created successfully",savedEntity);
         } catch (Exception e) {
             throw new IllegalArgumentException("Failed to create job: " + e.getMessage());
         }
-
         }
 
     @Override
     @Transactional
     public ApiResponse getCandidateById(Long id) {
         return candidateRepository.findById(id)
-                .map(candidateSubmissionEntity -> new ApiResponse(true, "Job found", mapperConfig.toCandidateDTO(candidateSubmissionEntity), null))
-                .orElseThrow(() -> new EntityNotFoundException("Job with ID " + id + " not found"));
+                .map(candidateSubmissionEntity -> new ApiResponse(true,"candidate found",mapperConfig.toCandidateDTO(candidateSubmissionEntity),null))
+                .orElseThrow(() -> new EntityNotFoundException("Candidate with ID " + id + " not found"));
     }
 
     @Override
@@ -93,7 +91,7 @@ public class CandidateServiceImpl implements CandidateService {
         RecruitmentCountResponse response = new RecruitmentCountResponse(
                 totalCount,activeCount,inactiveCount,openCount,yetToStartCount,onGoingCount,completeCount);
 
-        return new ApiResponse(true, "Getting all candidate", response, null);
+        return new ApiResponse(true,"getting all canditate",response,null);
     }
 
     @Override
@@ -205,8 +203,7 @@ public class CandidateServiceImpl implements CandidateService {
 
             CandidateSubmissionEntity updatedEntity = candidateRepository.save(existingCandidate);
 
-            return new ApiResponse(true, "Candidate updated successfully",
-                    mapperConfig.toCandidateDTO(updatedEntity), null);
+            return new ApiResponse(true,"canditate updated success",mapperConfig.toCandidateDTO(updatedEntity),null);
         } else {
             throw new EntityNotFoundException("Candidate with ID " + id + " not found");
         }
@@ -219,7 +216,7 @@ public class CandidateServiceImpl implements CandidateService {
             throw new EntityNotFoundException("Candidate not found with ID: " + candidateId);
         }
         candidateRepository.softDeleteCandidate( candidateId);
-        return new ApiResponse(true, "Soft delete success", null, null);
+        return new ApiResponse(true,"soft delete success",null,null);
     }
 
     @Override
@@ -238,7 +235,7 @@ public class CandidateServiceImpl implements CandidateService {
                 candidatePage.getSize(),
                 candidates
         );
-        return new ApiResponse(true, "Candidates retrieved successfully", null, paginationResponse);
+        return new ApiResponse(true,"candidates retrieve succes",null);
     }
 
     @Override
@@ -259,9 +256,9 @@ public class CandidateServiceImpl implements CandidateService {
         );
 
         if (candidateSubmissionDtoList.isEmpty()) {
-            return new ApiResponse(false, "No Candidates found matching the criteria", null, paginationResponse);
+            return new ApiResponse(true,"canditates",null);
         }
 
-        return new ApiResponse(true, "Candidates found", null, paginationResponse);
+        return new ApiResponse(true,"candidates",null);
     }
 }

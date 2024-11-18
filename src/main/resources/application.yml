@@ -1,16 +1,16 @@
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/ess_crm?currentSchema=candidate
-    username: postgres
-    password: root
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-        use_sql_comments: true
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/ess_crm?currentSchema=candidate
+#    username: postgres
+#    password: root
+#    driver-class-name: org.postgresql.Driver
+#
+#  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+#        use_sql_comments: true
