@@ -6,6 +6,7 @@ import com.ess.recruitment.core.utils.State;
 import com.ess.recruitment.core.utils.WorkType;
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public class TemplateEntity implements Serializable {
     @Column(name = "TEMPLATE_ID")
     private Long templateId;
 
-   // @NotNull(message = "Title is mandatory")
+    @NotNull(message = "Title is mandatory")
     @Column(name = "TITLE")
     private String title;
 

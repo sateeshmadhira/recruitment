@@ -1,5 +1,6 @@
 package com.ess.recruitment.core.dto;
 import com.ess.recruitment.core.utils.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ public class JobsDTO {
     private Long jobId;
     private String jobCode;
     private Status status;
+    @NotNull(message = "Title Not Be Null")
     private String jobTitle;
     private String technology;
     private int delFlag =1;

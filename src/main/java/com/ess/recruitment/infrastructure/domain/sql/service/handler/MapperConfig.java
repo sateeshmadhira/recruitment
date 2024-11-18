@@ -31,4 +31,6 @@ public interface MapperConfig {
      TemplateEntity toEntityTemplate(TemplateDTO templateDTO);
      TemplateDTO toDtoTemplate(TemplateEntity templateEntity);
 
+     void updateJobEntity(JobsEntity jobsEntity, JobsDTO jobsDTO);
+
 }

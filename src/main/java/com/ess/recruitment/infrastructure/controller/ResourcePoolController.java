@@ -1,5 +1,6 @@
 package com.ess.recruitment.infrastructure.controller;
 
+import com.ess.recruitment.core.constants.RecruitmentConstants;
 import com.ess.recruitment.core.req.RecruitmentRequest;
 import com.ess.recruitment.core.req.SearchReq;
 import com.ess.recruitment.core.resp.ApiResponse;
@@ -9,39 +10,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/resourcepool")
+@RequestMapping(RecruitmentConstants.RECRUITMENT_PATH_URL+"/resourcepool")
 @CrossOrigin("*")
 public class ResourcePoolController {
 
     @Autowired
     ResourcePoolService resourcePoolService;
 
-    @PostMapping("/saveResource")
+    @PostMapping
     public ResponseEntity<ApiResponse> createResourcePool(@RequestBody RecruitmentRequest recruitmentRequest) {
         ApiResponse response = resourcePoolService.createResourcePool(recruitmentRequest);
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(RecruitmentConstants.RECRUITMENT_BY_ID)
     public ResponseEntity<ApiResponse> getResourceById(@PathVariable("id") Long id) {
         ApiResponse apiResponse = resourcePoolService.getResourceById(id);
         return ResponseEntity.ok(apiResponse);
     }
 
     // Get All Jobs with Counts
-    @GetMapping("/counts")
+    @GetMapping(RecruitmentConstants.RECRUITMENT_GET_COUNTS)
     public ResponseEntity<ApiResponse> getAllResourcesWithCounts() {
         ApiResponse response = resourcePoolService.getAllResourcesWithCounts();
         return ResponseEntity.ok(response);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(RecruitmentConstants.RECRUITMENT_BY_ID)
     public ResponseEntity<ApiResponse> updateResourceStatus(@PathVariable("id") Long id, @RequestBody RecruitmentRequest recruitmentRequest) {
         ApiResponse response = resourcePoolService.updateResourceStatus(id, recruitmentRequest);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(RecruitmentConstants.RECRUITMENT_BY_ID)
     public ResponseEntity<ApiResponse> softDeleteResource(@PathVariable("id") Long resourcePoolId) {
         ApiResponse response = resourcePoolService.softDeleteResource(resourcePoolId);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
@@ -52,7 +53,7 @@ public class ResourcePoolController {
         ApiResponse response=resourcePoolService.getAllResource(page,pageSize);
         return response.isSuccess() ? ResponseEntity.ok(response) : ResponseEntity.status(404).body(response);
     }
-    @PostMapping("/search")
+    @PostMapping(RecruitmentConstants.RECRUITMENT_GLOBAL_SEARCH)
     public ResponseEntity<ApiResponse> globalSearch(@RequestBody SearchReq searchReq) {
         ApiResponse response = resourcePoolService.globalSearch(
                 searchReq.getSearchKey(),
